@@ -2,18 +2,31 @@
 
 set -e
 
+# Default values
+USERNAME=AdminUser
+HOSTNAME=freenestserver
+DOMAIN=localdomain
+PASSWORD=adminuser
+
 echo " ______  ______  ______  ______  ___   _  ______  ______  ______"
 echo "| _____||   _  || _____|| _____|| _ \ | || _____|| _____||__  __|"
 echo "| |___  |  |_| || |____ | |____ | |\ \| || |____ | |____   |  |"
 echo "|  ___| |  __ _||  ____|| _____|| | \   ||  ____||____  |  |  |"
 echo "|__|    |__| \_\|______||______||_|  \__||______||______|  |__|"
 
-echo "FreeNEST Portable Project Platform 1.4"
-echo "Do you want an easy install? (Y/n): "
+echo "FreeNEST Pre-seed package (...to make installation process little bit faster)"
+
+echo "Default values for FreeNEST use are:"
+echo "Adminuser's name: " $USERNAME
+echo "Hostname: " $HOSTNAME
+echo "Domain name: " $DOMAIN
+echo "Adminuser password: " $PASSWORD
+
+echo "Do you accept these values or do you want to set them by yourself? (Y/n): "
 read ANSWER
 
 if [ "$ANSWER" == "y" ]; then
-	echo "Give a adminuser name: "
+	echo "Give a adminuser name: "	
 	read USERNAME
 	echo "Give a hostname: "
 	read HOSTNAME
@@ -23,59 +36,58 @@ if [ "$ANSWER" == "y" ]; then
 	stty -echo
 	read PASSWORD
 	stty echo
-
-	echo "Setting up preseeds..."
-	
-	echo "freenest-core   freenest-core/ldap_adminuser_passwd password $PASSWORD" >> freenest-core.preseed
-	# MySQL application password for freenest-core:
-	echo "freenest-core   freenest-core/mysql/app-pass password $PASSWORD" >> freenest-core.preseed
-	echo "freenest-core   freenest-core/password-confirm password $PASSWORD" >> freenest-core.preseed
-	echo "freenest-core   freenest-core/mysql/admin-pass password $PASSWORD" >> freenest-core.preseed
-	echo "freenest-core   freenest-core/app-password-confirm password $PASSWORD" >> freenest-core.preseed
-	echo "freenest-core   freenest-core/freenest_adminuser_passwd password $PASSWORD" >> freenest-core.preseed
-	echo "freenest-core   freenest-core/mysql/admin-user string root" >> freenest-core.preseed
-	echo "freenest-core   freenest-core/internal/skip-preseed boolean false" >> freenest-core.preseed
-	echo "freenest-core   freenest-core/freenest_adminuser_email string adminuser@freenestdemoserver.localdomain" >> freenest-core.preseed
-	echo "freenest-core   freenest-core/install-error select abort" >> freenest-core.preseed
-	# Deconfigure database for freenest-core with dbconfig-common?
-	echo "freenest-core   freenest-core/dbconfig-remove boolean" >> freenest-core.preseed
-	echo "freenest-core   freenest-core/missing-db-package-error select abort" >> freenest-core.preseed
-	echo "freenest-core   freenest-core/passwords-do-not-match error" >> freenest-core.preseed
-	# Database type to be used by freenest-core:
-	echo "freenest-core   freenest-core/database-type select mysql" >> freenest-core.preseed
-	echo "freenest-core   freenest-core/machine_hostname string $HOSTNAME" >> freenest-core.preseed
-	# MySQL database name for freenest-core:
-	echo "freenest-core   freenest-core/db/dbname string freenestcore" >> freenest-core.preseed
-	# Do you want to back up the database for freenest-core before upgrading?
-	echo "freenest-core   freenest-core/upgrade-backup boolean true" >> freenest-core.preseed
-	# Host running the MySQL server for freenest-core:
-	echo "freenest-core   freenest-core/remote/newhost string" >> freenest-core.preseed
-	# Reinstall database for freenest-core?
-	echo "freenest-core   freenest-core/dbconfig-reinstall boolean false" >> freenest-core.preseed
-	echo "freenest-core   freenest-core/upgrade-error select abort" >> freenest-core.preseed
-	# Host name of the MySQL database server for freenest-core:
-	echo "freenest-core   freenest-core/remote/host select" >> freenest-core.preseed
-	# Perform upgrade on database for freenest-core with dbconfig-common?
-	echo "freenest-core   freenest-core/dbconfig-upgrade boolean true" >> freenest-core.preseed
-	echo "freenest-core   freenest-core/internal/reconfiguring boolean false" >> freenest-core.preseed
-	# Connection method for MySQL database of freenest-core:
-	echo "freenest-core   freenest-core/mysql/method select unix socket" >> freenest-core.preseed
-	# MySQL username for freenest-core:
-	echo "freenest-core   freenest-core/db/app-user string freenest-core" >> freenest-core.preseed
-	# Configure database for freenest-core with dbconfig-common?
-	echo "freenest-core   freenest-core/dbconfig-install boolean true" >> freenest-core.preseed
-	echo "freenest-core   freenest-core/remove-error select abort" >> freenest-core.preseed
-	echo "freenest-core   freenest-core/domain_name string $DOMAIN" >> freenest-core.preseed
-	echo "freenest-core   freenest-core/remote/port string" >> freenest-core.preseed
-	# Do you want to purge the database for freenest-core?
-	echo "freenest-core   freenest-core/purge boolean false" >> freenest-core.preseed
-	cat freenest-core.preseed | sudo debconf-set-selections
-
-	echo "Preseeding done... Let the FreeNEST installation begin."
-
 else
-	echo "Let the FreeNEST installation begin...(the hard way)"
+	echo "Default values set."
 fi
+
+echo "Setting up preseeds..."
+	
+echo "freenest-core   freenest-core/ldap_adminuser_passwd password $PASSWORD" >> freenest-core.preseed
+# MySQL application password for freenest-core:
+echo "freenest-core   freenest-core/mysql/app-pass password $PASSWORD" >> freenest-core.preseed
+echo "freenest-core   freenest-core/password-confirm password $PASSWORD" >> freenest-core.preseed
+echo "freenest-core   freenest-core/mysql/admin-pass password $PASSWORD" >> freenest-core.preseed
+echo "freenest-core   freenest-core/app-password-confirm password $PASSWORD" >> freenest-core.preseed
+echo "freenest-core   freenest-core/freenest_adminuser_passwd password $PASSWORD" >> freenest-core.preseed
+echo "freenest-core   freenest-core/mysql/admin-user string root" >> freenest-core.preseed
+echo "freenest-core   freenest-core/internal/skip-preseed boolean false" >> freenest-core.preseed
+echo "freenest-core   freenest-core/freenest_adminuser_email string adminuser@freenestdemoserver.localdomain" >> freenest-core.preseed
+echo "freenest-core   freenest-core/install-error select abort" >> freenest-core.preseed
+# Deconfigure database for freenest-core with dbconfig-common?
+echo "freenest-core   freenest-core/dbconfig-remove boolean" >> freenest-core.preseed
+echo "freenest-core   freenest-core/missing-db-package-error select abort" >> freenest-core.preseed
+echo "freenest-core   freenest-core/passwords-do-not-match error" >> freenest-core.preseed
+# Database type to be used by freenest-core:
+echo "freenest-core   freenest-core/database-type select mysql" >> freenest-core.preseed
+echo "freenest-core   freenest-core/machine_hostname string $HOSTNAME" >> freenest-core.preseed
+# MySQL database name for freenest-core:
+echo "freenest-core   freenest-core/db/dbname string freenestcore" >> freenest-core.preseed
+# Do you want to back up the database for freenest-core before upgrading?
+echo "freenest-core   freenest-core/upgrade-backup boolean true" >> freenest-core.preseed
+# Host running the MySQL server for freenest-core:
+echo "freenest-core   freenest-core/remote/newhost string" >> freenest-core.preseed
+# Reinstall database for freenest-core?
+echo "freenest-core   freenest-core/dbconfig-reinstall boolean false" >> freenest-core.preseed
+echo "freenest-core   freenest-core/upgrade-error select abort" >> freenest-core.preseed
+# Host name of the MySQL database server for freenest-core:
+echo "freenest-core   freenest-core/remote/host select" >> freenest-core.preseed
+# Perform upgrade on database for freenest-core with dbconfig-common?
+echo "freenest-core   freenest-core/dbconfig-upgrade boolean true" >> freenest-core.preseed
+echo "freenest-core   freenest-core/internal/reconfiguring boolean false" >> freenest-core.preseed
+# Connection method for MySQL database of freenest-core:
+echo "freenest-core   freenest-core/mysql/method select unix socket" >> freenest-core.preseed
+# MySQL username for freenest-core:
+echo "freenest-core   freenest-core/db/app-user string freenest-core" >> freenest-core.preseed
+# Configure database for freenest-core with dbconfig-common?
+echo "freenest-core   freenest-core/dbconfig-install boolean true" >> freenest-core.preseed
+echo "freenest-core   freenest-core/remove-error select abort" >> freenest-core.preseed
+echo "freenest-core   freenest-core/domain_name string $DOMAIN" >> freenest-core.preseed
+echo "freenest-core   freenest-core/remote/port string" >> freenest-core.preseed
+# Do you want to purge the database for freenest-core?
+echo "freenest-core   freenest-core/purge boolean false" >> freenest-core.preseed
+cat freenest-core.preseed | sudo debconf-set-selections
+
+echo "Preseeding done... Install FreeNEST package now."
 
 #DEBHELPER#
 
