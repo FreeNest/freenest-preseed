@@ -10,31 +10,39 @@ PASSWORD=""
 echo "FreeNEST 1.4 pre-seeder package (...to make installation process little bit faster)"
 echo "--- --- --- --- ---"
 # I spent like 2 hours for these frickin while loops because the syntax of sh is bitch.
-while [ -z $USERNAME ]
-do
+if [ -z $USERNAME ]
+then
 echo "Adminuser's name (default: AdminUser): " 
 read USERNAME
-done
+else
+$USERNAME=AdminUser
+fi
 
-while [ -z $HOSTNAME ]
-do
+if [ -z $HOSTNAME ]
+then
 echo "Hostname (default: freenestserver): " 
 read HOSTNAME
-done
+else
+$HOSTNAME=freenestserver
+fi
 
-while [ -z $DOMAIN ]
-do
+if [ -z $DOMAIN ]
+then
 echo "Domain name (default: localdomain): " 
 read DOMAIN
-done
+else
+$DOMAIN=localdomain
+fi
 
-while [ -z $PASSWORD ]
-do
+if [ -z $PASSWORD ]
+then
 stty -echo
 echo "Adminuser password (default: AdminUser): " 
 read PASSWORD
 stty echo
-done
+else
+$PASSWORD=AdminUser
+fi
 
 echo "--- --- --- --- ---"
 
