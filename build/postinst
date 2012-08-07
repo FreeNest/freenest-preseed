@@ -15,7 +15,7 @@ then
 echo "Adminuser's name (default: AdminUser): " 
 read USERNAME
 else
-$USERNAME=AdminUser
+USERNAME=AdminUser
 fi
 
 if [ -z $HOSTNAME ]
@@ -23,7 +23,7 @@ then
 echo "Hostname (default: freenestserver): " 
 read HOSTNAME
 else
-$HOSTNAME=freenestserver
+HOSTNAME=freenestserver
 fi
 
 if [ -z $DOMAIN ]
@@ -31,7 +31,7 @@ then
 echo "Domain name (default: localdomain): " 
 read DOMAIN
 else
-$DOMAIN=localdomain
+DOMAIN=localdomain
 fi
 
 if [ -z $PASSWORD ]
@@ -41,7 +41,7 @@ echo "Adminuser password (default: AdminUser): "
 read PASSWORD
 stty echo
 else
-$PASSWORD=AdminUser
+PASSWORD=AdminUser
 fi
 
 echo "--- --- --- --- ---"
