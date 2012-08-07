@@ -376,25 +376,6 @@ cat freenest-bugzilla.preseed | sudo debconf-set-selections
 cat freenest-forum.preseed | sudo debconf-set-selections
 cat freenest-trac.preseed | sudo debconf-set-selections
 cat freenest-controlpanel.preseed | sudo debconf-set-selections
-
-rm mysql-server-5.5.preseed
-rm slapd.preseed
-rm ldap-auth-config.preseed
-rm websvn.preseed
-rm libphp-adodb.preseed
-rm freenest-core.preseed
-rm freenest-stikked.preseed 
-rm freenest-teamboard.preseed 
-rm freenest-glpi.preseed 
-rm freenest-cacti.preseed 
-rm freenest-testlink.preseed 
-rm freenest-teamboard.preseed 
-rm freenest-changezilla.preseed 
-rm freenest-bugzilla.preseed 
-rm freenest-forum.preseed 
-rm freenest-trac.preseed 
-rm freenest-controlpanel.preseed 
-
 echo "Preseeding done... Install FreeNEST package now."
 
 #DEBHELPER#
