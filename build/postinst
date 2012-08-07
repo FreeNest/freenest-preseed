@@ -2,16 +2,17 @@
 
 set -e
 
-echo "FreeNEST 1.4 pre-seeding package (...to make installation process little bit faster)"
-echo " "
+echo "FreeNEST 1.4 pre-seeder package (...to make installation process little bit faster)"
+echo ""
 echo "-----------"
-echo "Adminuser's name (default: AdminUser) (NOTE: this will be used as a mysql and ldap password too): " 
+echo "Adminuser's name (default: AdminUser): " 
 read USERNAME
 echo "Hostname (default: freenestserver): " 
 read HOSTNAME
 echo "Domain name (default: localdomain): " 
 read DOMAIN
 echo "Adminuser password (default: AdminUser): " 
+echo "(NOTE: Currently this is used as mysql and ldap root password also...)"
 stty -echo
 read PASSWORD
 stty echo
@@ -39,6 +40,14 @@ echo "ldap-auth-config	ldap-auth-config/dblogin	boolean	false" >> ldap-auth-conf
 echo "libpam-runtime	libpam-runtime/profiles	multiselect	unix, ldap" >> ldap-auth-config.preseed
 echo "ldap-auth-config	ldap-auth-config/rootbinddn	string	cn=manager,dc=example,dc=net" >> ldap-auth-config.preseed
 echo "ldap-auth-config	ldap-auth-config/override	boolean	true" >> ldap-auth-config.preseed
+
+echo "websvn	websvn/webservers	multiselect	apache, apache-ssl, apache-perl, apache2" >> websvn.preseed
+echo "websvn	websvn/configuration	boolean	true" >> websvn.preseed
+echo "websvn	websvn/parentpath	string	/var/lib/svn" >> websvn.preseed
+echo "websvn	websvn/repositories	string	/var/lib/svn" >> websvn.preseed
+echo "websvn	websvn/permissions	note" >> websvn.preseed
+
+echo "libphp-adodb	libphp-adodb/pathmove	note" >> libphp-adodb.preseed
 
 echo "freenest-core	freenest-core/ldap_adminuser_passwd	password	$PASSWORD" >> freenest-core.preseed
 echo "freenest-core	freenest-core/mysql/app-pass	password $PASSWORD" >> freenest-core.preseed
@@ -467,6 +476,8 @@ echo "freenest-testlink       freenest-testlink/mysql/method  select  unix socke
 cat mysql-server-5.5.preseed | sudo debconf-set-selections
 cat slapd.preseed | sudo debconf-set-selections
 cat ldap-auth-config.preseed | sudo debconf-set-selections
+cat websvn.preseed | sudo debconf-set-selections
+cat libphp-adodb.preseed | sudo debconf-set-selections
 cat freenest-core.preseed | sudo debconf-set-selections
 cat freenest-stikked.preseed | sudo debconf-set-selections
 cat freenest-teamboard.preseed | sudo debconf-set-selections

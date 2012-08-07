@@ -1,5 +1,5 @@
 Source: freenest-preseed
-Version: 0.5
+Version: 0.6
 Section: unknown
 Priority: extra
 Maintainer: FreeNEST Project <freenestproject@unknown>
@@ -11,5 +11,5 @@ Package: freenest-preseed
 Architecture: all
 Depends: debconf-utils, ${shlibs:Depends}, ${misc:Depends}
 Description: Preseed package for FreeNEST
- This package is capable of preseeding FreeNEST in various ways.
+ This package is capable of preseeding FreeNEST to make the installation process faster...
 
