@@ -19,6 +19,7 @@ fi
 
 if [ -z $USERNAME ]
 then
+echo "Default value set!"
 USERNAME=AdminUser
 fi
 
@@ -31,6 +32,7 @@ fi
 
 if [ -z $HOSTNAME ]
 then
+echo "Default value set!"
 HOSTNAME=freenestserver
 fi
 
@@ -43,6 +45,7 @@ fi
 
 if [ -z $DOMAIN ]
 then
+echo "Default value set!"
 DOMAIN=localdomain
 fi
 
@@ -57,6 +60,7 @@ fi
 
 if [ -z $PASSWORD ]
 then
+echo "Default value set!"
 PASSWORD=AdminUser
 fi
 
