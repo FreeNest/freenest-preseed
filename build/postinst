@@ -53,7 +53,7 @@ fi
 if [ -z $PASSWORD ]
 then
 stty -echo
-echo "Adminuser password (default: AdminUser): " 
+echo "Adminuser password (default: adminuser): " 
 read PASSWORD
 stty echo
 fi
@@ -61,7 +61,7 @@ fi
 if [ -z $PASSWORD ]
 then
 echo "Default value set!"
-PASSWORD=AdminUser
+PASSWORD=adminuser
 fi
 
 echo "--- --- --- --- ---"
