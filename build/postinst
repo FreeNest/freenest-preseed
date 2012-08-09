@@ -386,6 +386,32 @@ echo "freenest-testlink       freenest-testlink/db/dbname     string  freenestte
 echo "freenest-bugzilla       freenest-bugzilla/remove-error  select  abort" >> freenest-bugzilla.preseed
 echo "freenest-controlpanel   freenest-controlpanel/dbconfig-upgrade  boolean true" >> freenest-controlpanel.preseed
 echo "freenest-testlink       freenest-testlink/mysql/method  select  unix socket" >> freenest-testlink.preseed
+echo "freenest-teambarometer	freenest-teambarometer/mysql/admin-pass	password $PASSWORD" >> freenest-teambarometer.preseed
+echo "freenest-teambarometer	freenest-teambarometer/password-confirm	password $PASSWORD" >> freenest-teambarometer.preseed
+echo "freenest-teambarometer	freenest-teambarometer/app-password-confirm	password $PASSWORD" >> freenest-teambarometer.preseed
+echo "freenest-teambarometer	freenest-teambarometer/mysql/app-pass	password $PASSWORD" >> freenest-teambarometer.preseed
+echo "freenest-teambarometer	freenest-teambarometer/upgrade-error	select	abort" >> freenest-teambarometer.preseed
+echo "freenest-teambarometer	freenest-teambarometer/purge	boolean	false" >> freenest-teambarometer.preseed
+echo "freenest-teambarometer	freenest-teambarometer/passwords-do-not-match	error" >> freenest-teambarometer.preseed
+echo "freenest-teambarometer	freenest-teambarometer/install-error	select	abort" >> freenest-teambarometer.preseed
+echo "freenest-teambarometer	freenest-teambarometer/internal/reconfiguring	boolean	false" >> freenest-teambarometer.preseed
+echo "freenest-teambarometer	freenest-teambarometer/missing-db-package-error	select	abort" >> freenest-teambarometer.preseed
+echo "freenest-teambarometer	freenest-teambarometer/dbconfig-reinstall	boolean	false" >> freenest-teambarometer.preseed
+echo "freenest-teambarometer	freenest-teambarometer/dbconfig-upgrade	boolean	true" >> freenest-teambarometer.preseed
+echo "freenest-teambarometer	freenest-teambarometer/upgrade-backup	boolean	true" >> freenest-teambarometer.preseed
+echo "freenest-teambarometer	freenest-teambarometer/remove-error	select	abort" >> freenest-teambarometer.preseed
+echo "freenest-teambarometer	freenest-teambarometer/internal/skip-preseed	boolean	false" >> freenest-teambarometer.preseed
+echo "freenest-teambarometer	freenest-teambarometer/dbconfig-install	boolean	true" >> freenest-teambarometer.preseed
+echo "freenest-teambarometer	freenest-teambarometer/dbconfig-remove	boolean	" >> freenest-teambarometer.preseed
+echo "freenest-teambarometer	freenest-teambarometer/database-type	select	mysql" >> freenest-teambarometer.preseed
+echo "freenest-teambarometer	freenest-teambarometer/remote/newhost	string	" >> freenest-teambarometer.preseed
+echo "freenest-teambarometer	freenest-teambarometer/remote/port	string	" >> freenest-teambarometer.preseed
+echo "freenest-teambarometer	freenest-teambarometer/mysql/method	select	unix socket" >> freenest-teambarometer.preseed
+echo "freenest-teambarometer	freenest-teambarometer/db/app-user	string	freenest-teambar" >> freenest-teambarometer.preseed
+echo "freenest-teambarometer	freenest-teambarometer/remote/host	select	" >> freenest-teambarometer.preseed
+echo "freenest-teambarometer	freenest-teambarometer/db/dbname	string	freenestteambarometer" >> freenest-teambarometer.preseed
+echo "freenest-teambarometer	freenest-teambarometer/mysql/admin-user	string	root" >> freenest-teambarometer.preseed
+
 
 cat mysql-server-5.5.preseed | sudo debconf-set-selections
 cat slapd.preseed | sudo debconf-set-selections
@@ -404,6 +430,7 @@ cat freenest-bugzilla.preseed | sudo debconf-set-selections
 cat freenest-forum.preseed | sudo debconf-set-selections
 cat freenest-trac.preseed | sudo debconf-set-selections
 cat freenest-controlpanel.preseed | sudo debconf-set-selections
+cat freenest-teambarometer.preseed | sudo debconf-set-selections
 echo "Preseeding done... Install FreeNEST package now."
 
 #DEBHELPER#
