@@ -2,26 +2,13 @@
 
 set -e
 
-USERNAME=""
+USERNAME="AdminUser"
 HOSTNAME=""
 DOMAIN=""
 PASSWORD=""
 
 echo "FreeNEST 1.4 pre-seeder package (...to make installation process little bit faster)"
 echo "--- --- --- --- ---"
-
-# Username
-if [ -z $USERNAME ]
-then
-echo "Adminuser's name (default: AdminUser): " 
-read USERNAME
-fi
-
-if [ -z $USERNAME ]
-then
-echo "Default value set!"
-USERNAME=AdminUser
-fi
 
 # Hostname
 if [ -z $HOSTNAME ]
