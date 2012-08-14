@@ -51,19 +51,17 @@ echo "Default value set!"
 PASSWORD=adminuser
 fi
 
+# Many of these seeds may be useless but they are there anyway because debconf-get-selections got them...
 echo "--- --- --- --- ---"
 
-echo "Preseeding mysql-server-5.5..."
 echo "mysql-server-5.5	mysql-server/root_password	password $PASSWORD" >> mysql-server-5.5.preseed
 echo "mysql-server-5.5	mysql-server/root_password_again	password $PASSWORD" >> mysql-server-5.5.preseed
 
-echo "Preseeding slapd..."
 echo "slapd	slapd/internal/generated_adminpw	password $PASSWORD" >> slapd.preseed
 echo "slapd	slapd/password1	password $PASSWORD" >> slapd.preseed
 echo "slapd	slapd/password2	password $PASSWORD" >> slapd.preseed
 echo "slapd	slapd/internal/adminpw	password $PASSWORD" >> slapd.preseed
 
-echo "Preseeding ldap-auth-config..."
 echo "ldap-auth-config	ldap-auth-config/rootbindpw	password	$PASSWORD" >> ldap-auth-config.preseed
 echo "ldap-auth-config	ldap-auth-config/bindpw	password	$PASSWORD" >> ldap-auth-config.preseed
 echo "ldap-auth-config	ldap-auth-config/binddn	string	cn=proxyuser,dc=example,dc=net" >> ldap-auth-config.preseed
@@ -78,17 +76,14 @@ echo "libpam-runtime	libpam-runtime/profiles	multiselect	unix, ldap" >> ldap-aut
 echo "ldap-auth-config	ldap-auth-config/rootbinddn	string	cn=manager,dc=example,dc=net" >> ldap-auth-config.preseed
 echo "ldap-auth-config	ldap-auth-config/override	boolean	true" >> ldap-auth-config.preseed
 
-echo "Preseeding websvn..."
 echo "websvn	websvn/webservers	multiselect	apache, apache-ssl, apache-perl, apache2" >> websvn.preseed
 echo "websvn	websvn/configuration	boolean	true" >> websvn.preseed
 echo "websvn	websvn/parentpath	string	/var/lib/svn" >> websvn.preseed
 echo "websvn	websvn/repositories	string	/var/lib/svn" >> websvn.preseed
 echo "websvn	websvn/permissions	note" >> websvn.preseed
 
-echo "Preseeding libphp-adodb..."
 echo "libphp-adodb	libphp-adodb/pathmove	note" >> libphp-adodb.preseed
 
-echo "Preseeding freenest-core..."
 echo "freenest-core	freenest-core/ldap_adminuser_passwd	password	$PASSWORD" >> freenest-core.preseed
 echo "freenest-core	freenest-core/mysql/app-pass	password $PASSWORD" >> freenest-core.preseed
 echo "freenest-core	freenest-core/password-confirm	password $PASSWORD" >> freenest-core.preseed
@@ -101,7 +96,6 @@ echo "freenest-core	freenest-core/freenest_adminuser_email	string	$USERNAME@$HOS
 echo "freenest-core	freenest-core/install-error	select	abort" >> freenest-core.preseed
 echo "freenest-core	freenest-core/dbconfig-remove	boolean" >> freenest-core.preseed
 echo "freenest-core	freenest-core/missing-db-package-error	select	abort" >> freenest-core.preseed
-echo "freenest-core	freenest-core/passwords-do-not-match	error" >> freenest-core.preseed
 echo "freenest-core	freenest-core/database-type	select	mysql" >> freenest-core.preseed
 echo "freenest-core	freenest-core/machine_hostname	string	$HOSTNAME" >> freenest-core.preseed
 echo "freenest-core	freenest-core/db/dbname	string	freenestcore" >> freenest-core.preseed
@@ -120,266 +114,263 @@ echo "freenest-core	freenest-core/domain_name	string	localdomain" >> freenest-co
 echo "freenest-core	freenest-core/remote/port	string" >> freenest-core.preseed
 echo "freenest-core	freenest-core/purge	boolean	false" >> freenest-core.preseed
 
-echo "Preseeding other freenest-packages..."
-echo "IGNORE THE POSSIBLE ERRORS PADAWAN!"
-
 echo "freenest-stikked        freenest-stikked/password-confirm       password $PASSWORD" >> freenest-stikked.preseed
-echo "freenest-teamboard      freenestteamboard/mysql/app-pass        password $PASSWORD" >> freenest-teamboard.preseed
-echo "freenest-glpi   freenest-glpi/mysql/app-pass    password $PASSWORD" >> freenest-glpi.preseed
-echo "freenest-cacti  freenest-cacti/mysql/admin-pass password $PASSWORD" >> freenest-cacti.preseed
-echo "freenest-testlink       freenest-testlink/password-confirm      password $PASSWORD" >> freenest-testlink.preseed
 echo "freenest-stikked        freenest-stikked/app-password-confirm   password $PASSWORD" >> freenest-stikked.preseed
-echo "freenest-teamboard      freenestteamboard/app-password-confirm  password $PASSWORD" >> freenest-teamboard.preseed
-echo "freenest-glpi   freenest-glpi/app-password-confirm      password $PASSWORD" >> freenest-glpi.preseed
 echo "freenest-stikked        freenest-stikked/mysql/app-pass password $PASSWORD" >> freenest-stikked.preseed
-echo "freenest-testlink       freenest-testlink/mysql/app-pass        password $PASSWORD" >> freenest-testlink.preseed
-echo "freenest-testlink       freenest-testlink/app-password-confirm  password $PASSWORD" >> freenest-testlink.preseed
-echo "freenest-teamboard      freenestteamboard/mysql/admin-pass      password $PASSWORD" >> freenest-teamboard.preseed
-echo "freenest-changezilla    freenest-changezilla/password-confirm   password $PASSWORD" >> freenest-changezilla.preseed
-echo "freenest-changezilla    freenest-changezilla/mysql/admin-pass   password $PASSWORD" >> freenest-changezilla.preseed
-echo "freenest-cacti  freenest-cacti/mysql/app-pass   password $PASSWORD" >> freenest-cacti.preseed
-echo "freenest-bugzilla       freenest-bugzilla/app-password-confirm  password $PASSWORD" >> freenest-bugzilla.preseed
-echo "freenest-controlpanel   freenest-controlpanel/mysql/app-pass    password $PASSWORD" >> freenest-controlpanel.preseed
-echo "freenest-trac   freenest-trac/app-password-confirm      password $PASSWORD" >> freenest-trac.preseed
-echo "freenest-testlink       freenest-testlink/mysql/admin-pass      password $PASSWORD" >> freenest-testlink.preseed
-echo "freenest-changezilla    freenest-changezilla/mysql/app-pass     password $PASSWORD" >> freenest-changezilla.preseed
-echo "freenest-bugzilla       freenest-bugzilla/mysql/app-pass        password $PASSWORD" >> freenest-bugzilla.preseed
-echo "freenest-controlpanel   freenest-controlpanel/password-confirm  password $PASSWORD" >> freenest-controlpanel.preseed
-echo "freenest-teamboard      freenestteamboard/password-confirm      password $PASSWORD" >> freenest-teamboard.preseed
-echo "freenest-glpi   freenest-glpi/mysql/admin-pass  password $PASSWORD" >> freenest-glpi.preseed
-echo "freenest-bugzilla       freenest-bugzilla/password-confirm      password $PASSWORD" >> freenest-bugzilla.preseed
-echo "freenest-trac   freenest-trac/mysql/app-pass    password $PASSWORD" >> freenest-trac.preseed
-echo "freenest-trac   freenest-trac/password-confirm  password $PASSWORD" >> freenest-trac.preseed
 echo "freenest-stikked        freenest-stikked/mysql/admin-pass       password $PASSWORD" >> freenest-stikked.preseed
-echo "freenest-bugzilla       freenest-bugzilla/mysql/admin-pass      password $PASSWORD" >> freenest-bugzilla.preseed
-echo "freenest-changezilla    freenest-changezilla/app-password-confirm       password $PASSWORD" >> freenest-changezilla.preseed
-echo "freenest-trac   freenest-trac/mysql/admin-pass  password $PASSWORD" >> freenest-trac.preseed
-echo "freenest-cacti  freenest-cacti/app-password-confirm     password $PASSWORD" >> freenest-cacti.preseed
-echo "freenest-cacti  freenest-cacti/password-confirm password $PASSWORD" >> freenest-cacti.preseed
-echo "freenest-forum  freenest-forum/mysql/admin-pass password $PASSWORD" >> freenest-forum.preseed
-echo "freenest-forum  freenest-forum/app-password-confirm     password $PASSWORD" >> freenest-forum.preseed
-echo "freenest-glpi   freenest-glpi/password-confirm  password $PASSWORD" >> freenest-glpi.preseed
-echo "freenest-forum  freenest-forum/password-confirm password $PASSWORD" >> freenest-forum.preseed
-echo "freenest-controlpanel   freenest-controlpanel/mysql/admin-pass  password $PASSWORD" >> freenest-controlpanel.preseed
-echo "freenest-controlpanel   freenest-controlpanel/app-password-confirm      password $PASSWORD" >> freenest-controlpanel.preseed
-echo "freenest-forum  freenest-forum/mysql/app-pass   password $PASSWORD" >> freenest-forum.preseed
-echo "freenest-forum  freenest-forum/db/dbname        string  freenestforum" >> freenest-forum.preseed
-echo "freenest-trac   freenest-trac/internal/skip-preseed     boolean false" >> freenest-trac.preseed
-echo "freenest-teamboard      freenestteamboard/remote/host   select" >> freenest-teamboard.preseed
-echo "freenest-changezilla    freenest-changezilla/dbconfig-upgrade   boolean true" >> freenest-changezilla.preseed
-echo "freenest-glpi   freenest-glpi/mysql/method      select  unix socket" >> freenest-glpi.preseed
-echo "freenest-forum  freenest-forum/remote/port      string" >> freenest-forum.preseed
-echo "freenest-teamboard      freenestteamboard/mysql/admin-user      string  root" >> freenest-teamboard.preseed
-echo "freenest-teamboard      freenestteamboard/upgrade-error select  abort" >> freenest-teamboard.preseed
-echo "freenest-changezilla    freenest-changezilla/database-type      select  mysql" >> freenest-changezilla.preseed
-echo "freenest-stikked        freenest-stikked/remote/host    select" >> freenest-stikked.preseed
-echo "freenest-controlpanel   freenest-controlpanel/missing-db-package-error  select  abort" >> freenest-controlpanel.preseed
 echo "freenest-stikked        freenest-stikked/dbconfig-remove        boolean" >> freenest-stikked.preseed
-echo "freenest-changezilla    freenest-changezilla/remote/port        string" >> freenest-changezilla.preseed
-echo "freenest-testlink       freenest-testlink/purge boolean false" >> freenest-testlink.preseed
-echo "freenest-controlpanel   freenest-controlpanel/upgrade-error     select  abort" >> freenest-controlpanel.preseed
-echo "freenest-glpi   freenest-glpi/remote/newhost    string" >> freenest-glpi.preseed
-echo "freenest-bugzilla       freenest-bugzilla/db/dbname     string  freenestbugzilla" >> freenest-bugzilla.preseed
-echo "freenest-forum  freenest-forum/dbconfig-remove  boolean" >> freenest-forum.preseed
-echo "freenest-teamboard      freenestteamboard/db/app-user   string  freenestteamboar" >> freenest-teamboard.preseed
-echo "freenest-forum  freenest-forum/mysql/admin-user string  root" >> freenest-forum.preseed
-echo "freenest-cacti  freenest-cacti/internal/skip-preseed    boolean false" >> freenest-cacti.preseed
-echo "freenest-controlpanel   freenest-controlpanel/db/app-user       string  freenest-control" >> freenest-controlpanle.preseed
-echo "freenest-glpi   freenest-glpi/database-type     select  mysql" >> freenest-glpi.preseed
-echo "freenest-teamboard      freenestteamboard/remote/newhost        string" >> freenest-teamboard.preseed
-echo "freenest-trac   freenest-trac/dbconfig-remove   boolean" >> freenest-trac.preseed
-echo "freenest-cacti  freenest-cacti/install-error    select  abort" >> freenest-cacti.preseed
-echo "freenest-glpi   freenest-glpi/db/app-user       string  freenest-glpi" >> freenest-glpi.preseed
-echo "freenest-forum  freenest-forum/dbconfig-install boolean true" >> freenest-forum.preseed
-echo "freenest-stikked        freenest-stikked/upgrade-error  select  abort" >> freenest-stikked.preseed
-echo "freenest-teamboard      freenestteamboard/install-error select  abort" >> freenest-teamboard.preseed
-echo "freenest-changezilla    freenest-changezilla/dbconfig-reinstall boolean false" >> freenest-changezilla.preseed
-echo "freenest-forum  freenest-forum/missing-db-package-error select  abort" >> freenest-forum.preseed
-echo "freenest-teamboard      freenestteamboard/purge boolean false" >> freenest-teamboard.preseed
-echo "freenest-trac   freenest-trac/upgrade-backup    boolean true" >> freenest-trac.preseed
-echo "freenest-changezilla    freenest-changezilla/mysql/method       select  unix socket" >> freenest-changezilla.preseed
-echo "freenest-cacti  freenest-cacti/purge    boolean false" >> freenest-cacti.preseed
+echo "freenest-stikked        freenest-stikked/remote/host    select" >> freenest-stikked.preseed
 echo "freenest-stikked        freenest-stikked/mysql/admin-user       string  root" >> freenest-stikked.preseed
-echo "freenest-cacti  freenest-cacti/db/dbname        string  freenestcacti" >> freenest-cacti.preseed
-echo "freenest-trac   freenest-trac/mysql/admin-user  string  root" >> freenest-trac.preseed
-echo "freenest-trac   freenest-trac/purge     boolean false" >> freenest-trac.preseed
-echo "freenest-teamboard      freenestteamboard/dbconfig-install      boolean true" >> freenest-teamboard.preseed
-echo "freenest-bugzilla       freenest-bugzilla/mysql/admin-user      string  root" >> freenest-bugzilla.preseed
-echo "freenest-forum  freenest-forum/dbconfig-reinstall       boolean false" >> freenest-forum.preseed
-echo "freenest-forum  freenest-forum/remote/host      select" >> freenest-forum.preseed
-echo "freenest-cacti  freenest-cacti/remove-error     select  abort" >> freenest-cacti.preseed
-echo "freenest-stikked        freenest-stikked/dbconfig-reinstall     boolean false" >> freenest-stikked.preseed
-echo "freenest-controlpanel   freenest-controlpanel/remote/host       select" >> freenest-controlpanel.preseed
-echo "freenest-teamboard      freenestteamboard/dbconfig-upgrade      boolean true" >> freenest-teamboard.preseed
-echo "freenest-controlpanel   freenest-controlpanel/internal/skip-preseed     boolean false" >> freenest-controlpanel.preseed
-echo "freenest-changezilla    freenest-changezilla/dbconfig-remove    boolean" >> freenest-changezilla.preseed
-echo "freenest-stikked        freenest-stikked/internal/reconfiguring boolean false" >> freenest-stikked.preseed
-echo "freenest-bugzilla       freenest-bugzilla/remote/newhost        string" >> freenest-bugzilla.preseed
-echo "freenest-teamboard      freenestteamboard/db/dbname     string  freenestteamboard" >> freenest-teamboard.preseed
-echo "freenest-forum  freenest-forum/internal/skip-preseed    boolean false" >> freenest-forum.preseed
-echo "freenest-teamboard      freenestteamboard/remove-error  select  abort" >> freenest-teamboard.preseed
 echo "freenest-stikked        freenest-stikked/purge  boolean false" >> freenest-stikked.preseed
+echo "freenest-stikked        freenest-stikked/upgrade-error  select  abort" >> freenest-stikked.preseed
+echo "freenest-stikked        freenest-stikked/internal/reconfiguring boolean false" >> freenest-stikked.preseed
 echo "freenest-stikked        freenest-stikked/internal/skip-preseed  boolean false" >> freenest-stikked.preseed
-echo "freenest-changezilla    freenest-changezilla/passwords-do-not-match     error" >> freenest-changezilla.preseed
+echo "freenest-stikked        freenest-stikked/dbconfig-install       boolean true" >> freenest-stikked.preseed
+echo "freenest-stikked        freenest-stikked/db/app-user    string  freenest-stikked" >> freenest-stikked.preseed
 echo "freenest-stikked        freenest-stikked/remote/port    string" >> freenest-stikked.preseed
-echo "freenest-cacti  freenest-cacti/passwords-do-not-match   error" >> freenest-cacti.preseed
-echo "freenest-cacti  freenest-cacti/dbconfig-remove  boolean" >> freenest-cacti.preseed
-echo "freenest-changezilla    freenest-changezilla/internal/reconfiguring     boolean false" >> freenest-changezilla.preseed
-echo "freenest-cacti  freenest-cacti/database-type    select  mysql" >> freenest-cacti.preseed
-echo "freenest-testlink       freenest-testlink/remote/newhost        string" >> freenest-testlink.preseed
-echo "freenest-bugzilla       freenest-bugzilla/install-error select  abort" >> freenest-bugzilla.preseed
+echo "freenest-stikked        freenest-stikked/remote/newhost string" >> freenest-stikked.preseed
+echo "freenest-stikked        freenest-stikked/dbconfig-reinstall     boolean false" >> freenest-stikked.preseed
+echo "freenest-stikked        freenest-stikked/db/dbname      string  freeneststikked" >> freenest-stikked.preseed
+echo "freenest-stikked        freenest-stikked/missing-db-package-error       select  abort" >> freenest-stikked.preseed
+echo "freenest-stikked        freenest-stikked/upgrade-backup boolean true" >> freenest-stikked.preseed
+echo "freenest-stikked        freenest-stikked/remove-error   select  abort" >> freenest-stikked.preseed
+echo "freenest-stikked        freenest-stikked/install-error  select  abort" >> freenest-stikked.preseed
+echo "freenest-stikked        freenest-stikked/dbconfig-upgrade       boolean true" >> freenest-stikked.preseed
+echo "freenest-stikked        freenest-stikked/database-type  select  mysql" >> freenest-stikked.preseed
+echo "freenest-stikked        freenest-stikked/mysql/method   select  unix socket" >> freenest-stikked.preseed
+
+echo "freenest-teamboard      freenestteamboard/mysql/app-pass        password $PASSWORD" >> freenest-teamboard.preseed
+echo "freenest-teamboard      freenestteamboard/app-password-confirm  password $PASSWORD" >> freenest-teamboard.preseed
+echo "freenest-teamboard      freenestteamboard/mysql/admin-pass      password $PASSWORD" >> freenest-teamboard.preseed
+
+echo "freenest-glpi   freenest-glpi/mysql/app-pass    password $PASSWORD" >> freenest-glpi.preseed
+echo "freenest-glpi   freenest-glpi/app-password-confirm      password $PASSWORD" >> freenest-glpi.preseed
+echo "freenest-glpi   freenest-glpi/mysql/admin-pass  password $PASSWORD" >> freenest-glpi.preseed
+echo "freenest-glpi   freenest-glpi/password-confirm  password $PASSWORD" >> freenest-glpi.preseed
+echo "freenest-glpi   freenest-glpi/mysql/method      select  unix socket" >> freenest-glpi.preseed
+echo "freenest-glpi   freenest-glpi/remote/newhost    string" >> freenest-glpi.preseed
+echo "freenest-glpi   freenest-glpi/database-type     select  mysql" >> freenest-glpi.preseed
+echo "freenest-glpi   freenest-glpi/db/app-user       string  freenest-glpi" >> freenest-glpi.preseed
 echo "freenest-glpi   freenest-glpi/mysql/admin-user  string  root" >> freenest-glpi.preseed
-echo "freenest-teamboard      freenestteamboard/remote/port   string" >> freenest-teamboard.preseed
-echo "freenest-changezilla    freenest-changezilla/dbconfig-install   boolean true" >> freenest-changezilla.preseed
-echo "freenest-changezilla    freenest-changezilla/db/app-user        string  freenest-changez" >> freenest-changezilla.preseed
-echo "freenest-teamboard      freenestteamboard/upgrade-backup        boolean true" >> freenest-teamboard.preseed
-echo "freenest-trac   freenest-trac/missing-db-package-error  select  abort" >> freenest-trac.preseed
-echo "freenest-bugzilla       freenest-bugzilla/purge boolean false" >> freenest-bugzilla.preseed
-echo "freenest-stikked        freenest-stikked/passwords-do-not-match error" >> freenest-stikked.preseed
 echo "freenest-glpi   freenest-glpi/internal/reconfiguring    boolean false" >> freenest-glpi.preseed
 echo "freenest-glpi   freenest-glpi/db/dbname string  freenestglpi" >> freenest-glpi.preseed
-echo "freenest-stikked        freenest-stikked/dbconfig-install       boolean true" >> freenest-stikked.preseed
-echo "freenest-controlpanel   freenest-controlpanel/dbconfig-reinstall        boolean false" >> freenest-controlpanel.preseed
-echo "freenest-cacti  freenest-cacti/mysql/method     select  unix socket" >> freenest-cacti.preseed
-echo "freenest-trac   freenest-trac/dbconfig-upgrade  boolean true" >> freenest-trac.preseed
-echo "freenest-teamboard      freenestteamboard/dbconfig-remove       boolean" >> freenest-teamboard.preseed
-echo "freenest-bugzilla       freenest-bugzilla/dbconfig-install      boolean true" >> freenest-bugzilla.preseed
 echo "freenest-glpi   freenest-glpi/missing-db-package-error  select  abort" >> freenest-glpi.preseed
-echo "freenest-bugzilla       freenest-bugzilla/database-type select  mysql" >> freenest-bugzilla.preseed
-echo "freenest-bugzilla       freenest-bugzilla/remote/host   select" >> freenest-bugzilla.preseed
 echo "freenest-glpi   freenest-glpi/remote/host       select" >> freenest-glpi.preseed
 echo "freenest-glpi   freenest-glpi/remote/port       string" >> freenest-glpi.preseed
-echo "freenest-controlpanel   freenest-controlpanel/db/dbname string  freenestcontrolpanel" >> freenest-controlpanel.preseed
-echo "freenest-bugzilla       freenest-bugzilla/upgrade-error select  abort" >> freenest-bugzilla.preseed
-echo "freenest-testlink       freenest-testlink/remote/port   string" >> freenest-testlink.preseed
-echo "freenest-testlink       freenest-testlink/upgrade-backup        boolean true" >> freenest-testlink.preseed
-echo "freenest-trac   freenest-trac/dbconfig-reinstall        boolean false" >> freenest-trac.preseed
-echo "freenest-controlpanel   freenest-controlpanel/internal/reconfiguring    boolean false" >> freenest-controlpanel.preseed
-echo "freenest-trac   freenest-trac/remove-error      select  abort" >> freenest-trac.preseed
-echo "freenest-changezilla    freenest-changezilla/remote/host        select" >> freenest-changezilla.preseed
-echo "freenest-bugzilla       freenest-bugzilla/passwords-do-not-match        error" >> freenest-bugzilla.preseed
-echo "freenest-cacti  freenest-cacti/dbconfig-upgrade boolean true" >> freenest-cacti.preseed
-echo "freenest-trac   freenest-trac/mysql/method      select  unix socket" >> freenest-trac.preseed
 echo "freenest-glpi   freenest-glpi/upgrade-backup    boolean true" >> freenest-glpi.preseed
-echo "freenest-testlink       freenest-testlink/internal/skip-preseed boolean false" >> freenest-testlink.preseed
-echo "freenest-bugzilla       freenest-bugzilla/dbconfig-reinstall    boolean false" >> freenest-bugzilla.preseed
-echo "freenest-testlink       freenest-testlink/install-error select  abort" >> freenest-testlink.preseed
-echo "freenest-stikked        freenest-stikked/db/app-user    string  freenest-stikked" >> freenest-stikked.preseed
-echo "freenest-changezilla    freenest-changezilla/db/dbname  string  freenestchangezilla" >> freenest-changezilla.preseed
-echo "freenest-changezilla    freenest-changezilla/missing-db-package-error   select  abort" >> freenest-changezilla.preseed
-echo "freenest-trac   freenest-trac/remote/port       string" >> freenest-trac.preseed
-echo "freenest-forum  freenest-forum/dbconfig-upgrade boolean true" >> freenest-forum.preseed
-echo "freenest-testlink       freenest-testlink/upgrade-error select  abort" >> freenest-testlink.preseed
-echo "freenest-bugzilla       freenest-bugzilla/db/app-user   string  freenest-bugzill" >> freenest-bugzilla.preseed
-echo "freenest-trac   freenest-trac/internal/reconfiguring    boolean false" >> freenest-trac.preseed
-echo "freenest-forum  freenest-forum/mysql/method     select  unix socket" >> freenest-forum.preseed
 echo "freenest-glpi   freenest-glpi/dbconfig-install  boolean true" >> freenest-glpi.preseed
+echo "freenest-glpi   freenest-glpi/dbconfig-remove   boolean" >> freenest-glpi.preseed
+echo "freenest-glpi   freenest-glpi/purge     boolean false" >> freenest-glpi.preseed
+echo "freenest-glpi   freenest-glpi/upgrade-error     select  abort" >> freenest-glpi.preseed
+echo "freenest-glpi   freenest-glpi/install-error     select  abort" >> freenest-glpi.preseed
+echo "freenest-glpi   freenest-glpi/dbconfig-upgrade  boolean true" >> freenest-glpi.preseed
+echo "freenest-glpi   freenest-glpi/dbconfig-reinstall        boolean false" >> freenest-glpi.preseed
+echo "freenest-glpi   freenest-glpi/internal/skip-preseed     boolean false" >> freenest-glpi.preseed
+echo "freenest-glpi   freenest-glpi/remove-error      select  abort" >> freenest-glpi.preseed
+
+echo "freenest-cacti  freenest-cacti/mysql/admin-pass password $PASSWORD" >> freenest-cacti.preseed
+echo "freenest-cacti  freenest-cacti/mysql/app-pass   password $PASSWORD" >> freenest-cacti.preseed
+echo "freenest-cacti  freenest-cacti/app-password-confirm     password $PASSWORD" >> freenest-cacti.preseed
+echo "freenest-cacti  freenest-cacti/password-confirm password $PASSWORD" >> freenest-cacti.preseed
+echo "freenest-cacti  freenest-cacti/internal/skip-preseed    boolean false" >> freenest-cacti.preseed
+echo "freenest-cacti  freenest-cacti/install-error    select  abort" >> freenest-cacti.preseed
+echo "freenest-cacti  freenest-cacti/purge    boolean false" >> freenest-cacti.preseed
+echo "freenest-cacti  freenest-cacti/db/dbname        string  freenestcacti" >> freenest-cacti.preseed
+echo "freenest-cacti  freenest-cacti/dbconfig-remove  boolean" >> freenest-cacti.preseed
+echo "freenest-cacti  freenest-cacti/remove-error     select  abort" >> freenest-cacti.preseed
+echo "freenest-cacti  freenest-cacti/mysql/method     select  unix socket" >> freenest-cacti.preseed
+echo "freenest-cacti  freenest-cacti/dbconfig-upgrade boolean true" >> freenest-cacti.preseed
 echo "freenest-cacti  freenest-cacti/remote/port      string" >> freenest-cacti.preseed
-echo "freenest-bugzilla       freenest-bugzilla/missing-db-package-error      select  abort" >> freenest-bugzilla.preseed
-echo "freenest-teamboard      freenestteamboard/database-type select  mysql" >> freenest-teamboard.preseed
-echo "freenest-controlpanel   freenest-controlpanel/remote/newhost    string" >> freenest-controlpanel.preseed
-echo "freenest-forum  freenest-forum/remote/newhost   string" >> freenest-forum.preseed
-echo "freenest-teamboard      freenestteamboard/dbconfig-reinstall    boolean false" >> freenest-teamboard.preseed
-echo "freenest-controlpanel   freenest-controlpanel/upgrade-backup    boolean true" >> freenest-controlpanel.preseed
-echo "freenest-forum  freenest-forum/database-type    select  mysql" >> freenest-forum.preseed
-echo "freenest-changezilla    freenest-changezilla/purge      boolean false" >> freenest-changezilla.preseed
-echo "freenest-controlpanel   freenest-controlpanel/purge     boolean false" >> freenest-controlpanel.preseed
-echo "freenest-trac   freenest-trac/remote/host       select" >> freenest-trac.preseed
-echo "freenest-testlink       freenest-testlink/remote/host   select" >> freenest-testlink.preseed
-echo "freenest-bugzilla       freenest-bugzilla/dbconfig-remove       boolean" >> freenest-bugzilla.preseed
-echo "freenest-trac   freenest-trac/db/dbname string  freenesttrac" >> freenest-trac.preseed
-echo "freenest-testlink       freenest-testlink/internal/reconfiguring        boolean false" >> freenest-testlink.preseed
-echo "freenest-forum  freenest-forum/db/app-user      string  freenest-forum" >> freenest-forum.preseed
-echo "freenest-stikked        freenest-stikked/db/dbname      string  freeneststikked" >> freenest-stikked.preseed
-echo "freenest-trac   freenest-trac/dbconfig-install  boolean true" >> freenest-trac.preseed
-echo "freenest-changezilla    freenest-changezilla/remove-error       select  abort" >> freenest-changezilla.preseed
 echo "freenest-cacti  freenest-cacti/internal/reconfiguring   boolean false" >> freenest-cacti.preseed
 echo "freenest-cacti  freenest-cacti/dbconfig-install boolean true" >> freenest-cacti.preseed
-echo "freenest-stikked        freenest-stikked/remote/newhost string" >> freenest-stikked.preseed
-echo "freenest-teamboard      freenestteamboard/missing-db-package-error      select  abort" >> freenest-teamboard.preseed
-echo "freenest-changezilla    freenest-changezilla/upgrade-backup     boolean true" >> freenest-changezilla.preseed
-echo "freenest-bugzilla       freenest-bugzilla/internal/reconfiguring        boolean false" >> freenest-bugzilla.preseed
-echo "freenest-stikked        freenest-stikked/missing-db-package-error       select  abort" >> freenest-stikked.preseed
+echo "freenest-cacti  freenest-cacti/remote/host      select" >> freenest-cacti.preseed
+echo "freenest-cacti  freenest-cacti/mysql/admin-user string  root" >> freenest-cacti.preseed
+echo "freenest-cacti  freenest-cacti/db/app-user      string  freenest-cacti" >> freenest-cacti.preseed
+echo "freenest-cacti  freenest-cacti/missing-db-package-error select  abort" >> freenest-cacti.preseed
+echo "freenest-cacti  freenest-cacti/remote/newhost   string" >> freenest-cacti.preseed
+echo "freenest-cacti  freenest-cacti/upgrade-error    select  abort" >> freenest-cacti.preseed
+echo "freenest-cacti  freenest-cacti/database-type    select  mysql" >> freenest-cacti.preseed
+echo "freenest-cacti  freenest-cacti/dbconfig-reinstall       boolean false" >> freenest-cacti.preseed
+echo "freenest-cacti  freenest-cacti/upgrade-backup   boolean true" >> freenest-cacti.preseed
+
+echo "freenest-testlink       freenest-testlink/password-confirm      password $PASSWORD" >> freenest-testlink.preseed
+echo "freenest-testlink       freenest-testlink/mysql/app-pass        password $PASSWORD" >> freenest-testlink.preseed
+echo "freenest-testlink       freenest-testlink/app-password-confirm  password $PASSWORD" >> freenest-testlink.preseed
+echo "freenest-testlink       freenest-testlink/mysql/admin-pass      password $PASSWORD" >> freenest-testlink.preseed
+echo "freenest-testlink       freenest-testlink/purge boolean false" >> freenest-testlink.preseed
+echo "freenest-testlink       freenest-testlink/remote/newhost        string" >> freenest-testlink.preseed
+echo "freenest-testlink       freenest-testlink/remote/port   string" >> freenest-testlink.preseed
+echo "freenest-testlink       freenest-testlink/upgrade-backup        boolean true" >> freenest-testlink.preseed
+echo "freenest-testlink       freenest-testlink/internal/skip-preseed boolean false" >> freenest-testlink.preseed
+echo "freenest-testlink       freenest-testlink/install-error select  abort" >> freenest-testlink.preseed
+echo "freenest-testlink       freenest-testlink/upgrade-error select  abort" >> freenest-testlink.preseed
+echo "freenest-testlink       freenest-testlink/remote/host   select" >> freenest-testlink.preseed
+echo "freenest-testlink       freenest-testlink/internal/reconfiguring        boolean false" >> freenest-testlink.preseed
 echo "freenest-testlink       freenest-testlink/dbconfig-reinstall    boolean false" >> freenest-testlink.preseed
 echo "freenest-testlink       freenest-testlink/database-type select  mysql" >> freenest-testlink.preseed
 echo "freenest-testlink       freenest-testlink/mysql/admin-user      string  root" >> freenest-testlink.preseed
-echo "freenest-cacti  freenest-cacti/dbconfig-reinstall       boolean false" >> freenest-cacti.preseed
 echo "freenest-testlink       freenest-testlink/dbconfig-install      boolean true" >> freenest-testlink.preseed
-echo "freenest-bugzilla       freenest-bugzilla/dbconfig-upgrade      boolean true" >> freenest-bugzilla.preseed
 echo "freenest-testlink       freenest-testlink/dbconfig-remove       boolean" >> freenest-testlink.preseed
 echo "freenest-testlink       freenest-testlink/db/app-user   string  freenest-testlin" >> freenest-testlink.preseed
-echo "freenest-forum  freenest-forum/purge    boolean false" >> freenest-forum.preseed
-echo "freenest-cacti  freenest-cacti/upgrade-backup   boolean true" >> freenest-cacti.preseed
-echo "freenest-bugzilla       freenest-bugzilla/remote/port   string" >> freenest-bugzilla.preseed
-echo "freenest-teamboard      freenestteamboard/mysql/method  select  unix socket" >> freenest-teamboard.preseed
-echo "freenest-stikked        freenest-stikked/mysql/method   select  unix socket" >> freenest-stikked.preseed
-echo "freenest-glpi   freenest-glpi/dbconfig-remove   boolean" >> freenest-glpi.preseed
-echo "freenest-glpi   freenest-glpi/purge     boolean false" >> freenest-glpi.preseed
-echo "freenest-controlpanel   freenest-controlpanel/remove-error      select  abort" >> freenest-controlpanel.preseed
-echo "freenest-changezilla    freenest-changezilla/install-error      select  abort" >> freenest-changezilla.preseed
-echo "freenest-forum  freenest-forum/passwords-do-not-match   error" >> freenest-forum.preseed
-echo "freenest-bugzilla       freenest-bugzilla/upgrade-backup        boolean true" >> freenest-bugzilla.preseed
-echo "freenest-controlpanel   freenest-controlpanel/mysql/admin-user  string  root" >> freenest-controlpanel.preseed
-echo "freenest-changezilla    freenest-changezilla/internal/skip-preseed      boolean false" >> freenest-changezilla.preseed
-echo "freenest-stikked        freenest-stikked/database-type  select  mysql" >> freenest-stikked.preseed
 echo "freenest-testlink       freenest-testlink/dbconfig-upgrade      boolean true" >> freenest-testlink.preseed
-echo "freenest-stikked        freenest-stikked/upgrade-backup boolean true" >> freenest-stikked.preseed
-echo "freenest-stikked        freenest-stikked/remove-error   select  abort" >> freenest-stikked.preseed
-echo "freenest-glpi   freenest-glpi/upgrade-error     select  abort" >> freenest-glpi.preseed
-echo "freenest-stikked        freenest-stikked/install-error  select  abort" >> freenest-stikked.preseed
-echo "freenest-testlink       freenest-testlink/passwords-do-not-match        error" >> freenest-testlink.preseed
-echo "freenest-trac   freenest-trac/database-type     select  mysql" >> freenest-trac.preseed
-echo "freenest-glpi   freenest-glpi/install-error     select  abort" >> freenest-glpi.preseed
-echo "freenest-teamboard      freenestteamboard/passwords-do-not-match        error" >> freenest-teamboard.preseed
-echo "freenest-glpi   freenest-glpi/dbconfig-upgrade  boolean true" >> freenest-glpi.preseed
-echo "freenest-forum  freenest-forum/internal/reconfiguring   boolean false" >> freenest-forum.preseed
-echo "freenest-bugzilla       freenest-bugzilla/mysql/method  select  unix socket" >> freenest-bugzilla.preseed
-echo "freenest-controlpanel   freenest-controlpanel/remote/port       string" >> freenest-controlpanel.preseed
-echo "freenest-glpi   freenest-glpi/dbconfig-reinstall        boolean false" >> freenest-glpi.preseed
-echo "freenest-cacti  freenest-cacti/remote/host      select" >> freenest-cacti.preseed
-echo "freenest-changezilla    freenest-changezilla/mysql/admin-user   string  root" >> freenest-changezilla.preseed
-echo "freenest-glpi   freenest-glpi/internal/skip-preseed     boolean false" >> freenest-glpi.preseed
-echo "freenest-bugzilla       freenest-bugzilla/internal/skip-preseed boolean false" >> freenest-bugzilla.preseed
-echo "freenest-cacti  freenest-cacti/mysql/admin-user string  root" >> freenest-cacti.preseed
-echo "freenest-controlpanel   freenest-controlpanel/dbconfig-install  boolean true" >> freenest-controlpanel.preseed
-echo "freenest-changezilla    freenest-changezilla/upgrade-error      select  abort" >> freenest-changezilla.preseed
-echo "freenest-trac   freenest-trac/install-error     select  abort" >> freenest-trac.preseed
 echo "freenest-testlink       freenest-testlink/missing-db-package-error      select  abort" >> freenest-testlink.preseed
 echo "freenest-testlink       freenest-testlink/remove-error  select  abort" >> freenest-testlink.preseed
-echo "freenest-glpi   freenest-glpi/remove-error      select  abort" >> freenest-glpi.preseed
-echo "freenest-trac   freenest-trac/passwords-do-not-match    error" >> freenest-trac.preseed
-echo "freenest-forum  freenest-forum/upgrade-backup   boolean true" >> freenest-forum.preseed
-echo "freenest-glpi   freenest-glpi/passwords-do-not-match    error" >> freenest-glpi.preseed
-echo "freenest-forum  freenest-forum/upgrade-error    select  abort" >> freenest-forum.preseed
+echo "freenest-testlink       freenest-testlink/db/dbname     string  freenesttestlink" >> freenest-testlink.preseed
+echo "freenest-testlink       freenest-testlink/mysql/method  select  unix socket" >> freenest-testlink.preseed
+
+echo "freenest-changezilla    freenest-changezilla/password-confirm   password $PASSWORD" >> freenest-changezilla.preseed
+echo "freenest-changezilla    freenest-changezilla/mysql/admin-pass   password $PASSWORD" >> freenest-changezilla.preseed
+echo "freenest-changezilla    freenest-changezilla/mysql/app-pass     password $PASSWORD" >> freenest-changezilla.preseed
+echo "freenest-changezilla    freenest-changezilla/app-password-confirm       password $PASSWORD" >> freenest-changezilla.preseed
+echo "freenest-changezilla    freenest-changezilla/dbconfig-upgrade   boolean true" >> freenest-changezilla.preseed
+echo "freenest-changezilla    freenest-changezilla/database-type      select  mysql" >> freenest-changezilla.preseed
+echo "freenest-changezilla    freenest-changezilla/remote/port        string" >> freenest-changezilla.preseed
+echo "freenest-changezilla    freenest-changezilla/dbconfig-reinstall boolean false" >> freenest-changezilla.preseed
+echo "freenest-changezilla    freenest-changezilla/mysql/method       select  unix socket" >> freenest-changezilla.preseed
+echo "freenest-changezilla    freenest-changezilla/dbconfig-remove    boolean" >> freenest-changezilla.preseed
+echo "freenest-changezilla    freenest-changezilla/internal/reconfiguring     boolean false" >> freenest-changezilla.preseed
+echo "freenest-changezilla    freenest-changezilla/dbconfig-install   boolean true" >> freenest-changezilla.preseed
+echo "freenest-changezilla    freenest-changezilla/db/app-user        string  freenest-changez" >> freenest-changezilla.preseed
+echo "freenest-changezilla    freenest-changezilla/remote/host        select" >> freenest-changezilla.preseed
+echo "freenest-changezilla    freenest-changezilla/db/dbname  string  freenestchangezilla" >> freenest-changezilla.preseed
+echo "freenest-changezilla    freenest-changezilla/missing-db-package-error   select  abort" >> freenest-changezilla.preseed
+echo "freenest-changezilla    freenest-changezilla/purge      boolean false" >> freenest-changezilla.preseed
+echo "freenest-changezilla    freenest-changezilla/remove-error       select  abort" >> freenest-changezilla.preseed
+echo "freenest-changezilla    freenest-changezilla/upgrade-backup     boolean true" >> freenest-changezilla.preseed
+echo "freenest-changezilla    freenest-changezilla/install-error      select  abort" >> freenest-changezilla.preseed
+echo "freenest-changezilla    freenest-changezilla/internal/skip-preseed      boolean false" >> freenest-changezilla.preseed
+echo "freenest-changezilla    freenest-changezilla/mysql/admin-user   string  root" >> freenest-changezilla.preseed
+echo "freenest-changezilla    freenest-changezilla/upgrade-error      select  abort" >> freenest-changezilla.preseed
+echo "freenest-changezilla    freenest-changezilla/remote/newhost     string" >> freenest-changezilla.preseed
+
+echo "freenest-bugzilla       freenest-bugzilla/app-password-confirm  password $PASSWORD" >> freenest-bugzilla.preseed
+echo "freenest-bugzilla       freenest-bugzilla/mysql/app-pass        password $PASSWORD" >> freenest-bugzilla.preseed
+echo "freenest-bugzilla       freenest-bugzilla/password-confirm      password $PASSWORD" >> freenest-bugzilla.preseed
+echo "freenest-bugzilla       freenest-bugzilla/mysql/admin-pass      password $PASSWORD" >> freenest-bugzilla.preseed
+echo "freenest-bugzilla       freenest-bugzilla/db/dbname     string  freenestbugzilla" >> freenest-bugzilla.preseed
+echo "freenest-bugzilla       freenest-bugzilla/mysql/admin-user      string  root" >> freenest-bugzilla.preseed
+echo "freenest-bugzilla       freenest-bugzilla/remote/newhost        string" >> freenest-bugzilla.preseed
+echo "freenest-bugzilla       freenest-bugzilla/install-error select  abort" >> freenest-bugzilla.preseed
+echo "freenest-bugzilla       freenest-bugzilla/purge boolean false" >> freenest-bugzilla.preseed
+echo "freenest-bugzilla       freenest-bugzilla/dbconfig-install      boolean true" >> freenest-bugzilla.preseed
+echo "freenest-bugzilla       freenest-bugzilla/database-type select  mysql" >> freenest-bugzilla.preseed
+echo "freenest-bugzilla       freenest-bugzilla/remote/host   select" >> freenest-bugzilla.preseed
+echo "freenest-bugzilla       freenest-bugzilla/upgrade-error select  abort" >> freenest-bugzilla.preseed
+echo "freenest-bugzilla       freenest-bugzilla/dbconfig-reinstall    boolean false" >> freenest-bugzilla.preseed
+echo "freenest-bugzilla       freenest-bugzilla/db/app-user   string  freenest-bugzill" >> freenest-bugzilla.preseed
+echo "freenest-bugzilla       freenest-bugzilla/missing-db-package-error      select  abort" >> freenest-bugzilla.preseed
+echo "freenest-bugzilla       freenest-bugzilla/dbconfig-remove       boolean" >> freenest-bugzilla.preseed
+echo "freenest-bugzilla       freenest-bugzilla/internal/reconfiguring        boolean false" >> freenest-bugzilla.preseed
+echo "freenest-bugzilla       freenest-bugzilla/dbconfig-upgrade      boolean true" >> freenest-bugzilla.preseed
+echo "freenest-bugzilla       freenest-bugzilla/remote/port   string" >> freenest-bugzilla.preseed
+echo "freenest-bugzilla       freenest-bugzilla/upgrade-backup        boolean true" >> freenest-bugzilla.preseed
+echo "freenest-bugzilla       freenest-bugzilla/mysql/method  select  unix socket" >> freenest-bugzilla.preseed
+echo "freenest-bugzilla       freenest-bugzilla/internal/skip-preseed boolean false" >> freenest-bugzilla.preseed
+echo "freenest-bugzilla       freenest-bugzilla/remove-error  select  abort" >> freenest-bugzilla.preseed
+
+echo "freenest-controlpanel   freenest-controlpanel/mysql/app-pass    password $PASSWORD" >> freenest-controlpanel.preseed
+echo "freenest-controlpanel   freenest-controlpanel/password-confirm  password $PASSWORD" >> freenest-controlpanel.preseed
+echo "freenest-controlpanel   freenest-controlpanel/mysql/admin-pass  password $PASSWORD" >> freenest-controlpanel.preseed
+echo "freenest-controlpanel   freenest-controlpanel/app-password-confirm      password $PASSWORD" >> freenest-controlpanel.preseed
+echo "freenest-controlpanel   freenest-controlpanel/missing-db-package-error  select  abort" >> freenest-controlpanel.preseed
+echo "freenest-controlpanel   freenest-controlpanel/upgrade-error     select  abort" >> freenest-controlpanel.preseed
+echo "freenest-controlpanel   freenest-controlpanel/db/app-user       string  freenest-control" >> freenest-controlpanle.preseed
+echo "freenest-controlpanel   freenest-controlpanel/remote/host       select" >> freenest-controlpanel.preseed
+echo "freenest-controlpanel   freenest-controlpanel/internal/skip-preseed     boolean false" >> freenest-controlpanel.preseed
+echo "freenest-controlpanel   freenest-controlpanel/dbconfig-reinstall        boolean false" >> freenest-controlpanel.preseed
+echo "freenest-controlpanel   freenest-controlpanel/db/dbname string  freenestcontrolpanel" >> freenest-controlpanel.preseed
+echo "freenest-controlpanel   freenest-controlpanel/remote/newhost    string" >> freenest-controlpanel.preseed
+echo "freenest-controlpanel   freenest-controlpanel/upgrade-backup    boolean true" >> freenest-controlpanel.preseed
+echo "freenest-controlpanel   freenest-controlpanel/purge     boolean false" >> freenest-controlpanel.preseed
+echo "freenest-controlpanel   freenest-controlpanel/remove-error      select  abort" >> freenest-controlpanel.preseed
+echo "freenest-controlpanel   freenest-controlpanel/mysql/admin-user  string  root" >> freenest-controlpanel.preseed
+echo "freenest-controlpanel   freenest-controlpanel/remote/port       string" >> freenest-controlpanel.preseed
+echo "freenest-controlpanel   freenest-controlpanel/dbconfig-install  boolean true" >> freenest-controlpanel.preseed
 echo "freenest-controlpanel   freenest-controlpanel/dbconfig-remove   boolean" >> freenest-controlpanel.preseed
-echo "freenest-cacti  freenest-cacti/db/app-user      string  freenest-cacti" >> freenest-cacti.preseed
-echo "freenest-forum  freenest-forum/remove-error     select  abort" >> freenest-forum.preseed
-echo "freenest-trac   freenest-trac/remote/newhost    string" >> freenest-trac.preseed
-echo "freenest-cacti  freenest-cacti/missing-db-package-error select  abort" >> freenest-cacti.preseed
-echo "freenest-cacti  freenest-cacti/remote/newhost   string" >> freenest-cacti.preseed
-echo "freenest-controlpanel   freenest-controlpanel/passwords-do-not-match    error" >> freenest-controlpanel.preseed
-echo "freenest-trac   freenest-trac/upgrade-error     select  abort" >> freenest-trac.preseed
-echo "freenest-forum  freenest-forum/install-error    select  abort" >> freenest-forum.preseed
-echo "freenest-teamboard      freenestteamboard/internal/skip-preseed boolean false" >> freenest-teamboard.preseed
 echo "freenest-controlpanel   freenest-controlpanel/database-type     select  mysql" >> freenest-controlpanel.preseed
 echo "freenest-controlpanel   freenest-controlpanel/install-error     select  abort" >> freenest-controlpanel.preseed
 echo "freenest-controlpanel   freenest-controlpanel/mysql/method      select  unix socket" >> freenest-controlpanel.preseed
-echo "freenest-changezilla    freenest-changezilla/remote/newhost     string" >> freenest-changezilla.preseed
-echo "freenest-trac   freenest-trac/db/app-user       string  freenest-trac" >> freenest-trac.preseed
-echo "freenest-cacti  freenest-cacti/upgrade-error    select  abort" >> freenest-cacti.preseed
-echo "freenest-teamboard      freenestteamboard/internal/reconfiguring        boolean false" >> freenest-teamboard.preseed
-echo "freenest-stikked        freenest-stikked/dbconfig-upgrade       boolean true" >> freenest-stikked.preseed
-echo "freenest-testlink       freenest-testlink/db/dbname     string  freenesttestlink" >> freenest-testlink.preseed
-echo "freenest-bugzilla       freenest-bugzilla/remove-error  select  abort" >> freenest-bugzilla.preseed
 echo "freenest-controlpanel   freenest-controlpanel/dbconfig-upgrade  boolean true" >> freenest-controlpanel.preseed
-echo "freenest-testlink       freenest-testlink/mysql/method  select  unix socket" >> freenest-testlink.preseed
+echo "freenest-controlpanel   freenest-controlpanel/internal/reconfiguring    boolean false" >> freenest-controlpanel.preseed
+
+echo "freenest-trac   freenest-trac/app-password-confirm      password $PASSWORD" >> freenest-trac.preseed
+echo "freenest-trac   freenest-trac/mysql/app-pass    password $PASSWORD" >> freenest-trac.preseed
+echo "freenest-trac   freenest-trac/password-confirm  password $PASSWORD" >> freenest-trac.preseed
+echo "freenest-trac   freenest-trac/mysql/admin-pass  password $PASSWORD" >> freenest-trac.preseed
+echo "freenest-trac   freenest-trac/internal/skip-preseed     boolean false" >> freenest-trac.preseed
+echo "freenest-trac   freenest-trac/dbconfig-remove   boolean" >> freenest-trac.preseed
+echo "freenest-trac   freenest-trac/upgrade-backup    boolean true" >> freenest-trac.preseed
+echo "freenest-trac   freenest-trac/mysql/admin-user  string  root" >> freenest-trac.preseed
+echo "freenest-trac   freenest-trac/purge     boolean false" >> freenest-trac.preseed
+echo "freenest-trac   freenest-trac/missing-db-package-error  select  abort" >> freenest-trac.preseed
+echo "freenest-trac   freenest-trac/dbconfig-upgrade  boolean true" >> freenest-trac.preseed
+echo "freenest-trac   freenest-trac/dbconfig-reinstall        boolean false" >> freenest-trac.preseed
+echo "freenest-trac   freenest-trac/remove-error      select  abort" >> freenest-trac.preseed
+echo "freenest-trac   freenest-trac/mysql/method      select  unix socket" >> freenest-trac.preseed
+echo "freenest-trac   freenest-trac/remote/port       string" >> freenest-trac.preseed
+echo "freenest-trac   freenest-trac/internal/reconfiguring    boolean false" >> freenest-trac.preseed
+echo "freenest-trac   freenest-trac/remote/host       select" >> freenest-trac.preseed
+echo "freenest-trac   freenest-trac/db/dbname string  freenesttrac" >> freenest-trac.preseed
+echo "freenest-trac   freenest-trac/dbconfig-install  boolean true" >> freenest-trac.preseed
+echo "freenest-trac   freenest-trac/database-type     select  mysql" >> freenest-trac.preseed
+echo "freenest-trac   freenest-trac/remote/newhost    string" >> freenest-trac.preseed
+echo "freenest-trac   freenest-trac/upgrade-error     select  abort" >> freenest-trac.preseed
+echo "freenest-trac   freenest-trac/db/app-user       string  freenest-trac" >> freenest-trac.preseed
+echo "freenest-trac   freenest-trac/install-error     select  abort" >> freenest-trac.preseed
+
+echo "freenest-teamboard      freenestteamboard/password-confirm      password $PASSWORD" >> freenest-teamboard.preseed
+echo "freenest-teamboard      freenestteamboard/remote/host   select" >> freenest-teamboard.preseed
+echo "freenest-teamboard      freenestteamboard/mysql/admin-user      string  root" >> freenest-teamboard.preseed
+echo "freenest-teamboard      freenestteamboard/upgrade-error select  abort" >> freenest-teamboard.preseed
+echo "freenest-teamboard      freenestteamboard/db/app-user   string  freenestteamboar" >> freenest-teamboard.preseed
+echo "freenest-teamboard      freenestteamboard/remote/newhost        string" >> freenest-teamboard.preseed
+echo "freenest-teamboard      freenestteamboard/install-error select  abort" >> freenest-teamboard.preseed
+echo "freenest-teamboard      freenestteamboard/purge boolean false" >> freenest-teamboard.preseed
+echo "freenest-teamboard      freenestteamboard/dbconfig-install      boolean true" >> freenest-teamboard.preseed
+echo "freenest-teamboard      freenestteamboard/dbconfig-upgrade      boolean true" >> freenest-teamboard.preseed
+echo "freenest-teamboard      freenestteamboard/db/dbname     string  freenestteamboard" >> freenest-teamboard.preseed
+echo "freenest-teamboard      freenestteamboard/remove-error  select  abort" >> freenest-teamboard.preseed
+echo "freenest-teamboard      freenestteamboard/remote/port   string" >> freenest-teamboard.preseed
+echo "freenest-teamboard      freenestteamboard/upgrade-backup        boolean true" >> freenest-teamboard.preseed
+echo "freenest-teamboard      freenestteamboard/dbconfig-remove       boolean" >> freenest-teamboard.preseed
+echo "freenest-teamboard      freenestteamboard/database-type select  mysql" >> freenest-teamboard.preseed
+echo "freenest-teamboard      freenestteamboard/dbconfig-reinstall    boolean false" >> freenest-teamboard.preseed
+echo "freenest-teamboard      freenestteamboard/missing-db-package-error      select  abort" >> freenest-teamboard.preseed
+echo "freenest-teamboard      freenestteamboard/mysql/method  select  unix socket" >> freenest-teamboard.preseed
+echo "freenest-teamboard      freenestteamboard/internal/reconfiguring        boolean false" >> freenest-teamboard.preseed
+echo "freenest-teamboard      freenestteamboard/internal/skip-preseed boolean false" >> freenest-teamboard.preseed
+
+echo "freenest-forum  freenest-forum/mysql/admin-pass password $PASSWORD" >> freenest-forum.preseed
+echo "freenest-forum  freenest-forum/app-password-confirm     password $PASSWORD" >> freenest-forum.preseed
+echo "freenest-forum  freenest-forum/password-confirm password $PASSWORD" >> freenest-forum.preseed
+echo "freenest-forum  freenest-forum/mysql/app-pass   password $PASSWORD" >> freenest-forum.preseed
+echo "freenest-forum  freenest-forum/db/dbname        string  freenestforum" >> freenest-forum.preseed
+echo "freenest-forum  freenest-forum/remote/port      string" >> freenest-forum.preseed
+echo "freenest-forum  freenest-forum/dbconfig-remove  boolean" >> freenest-forum.preseed
+echo "freenest-forum  freenest-forum/mysql/admin-user string  root" >> freenest-forum.preseed
+echo "freenest-forum  freenest-forum/dbconfig-install boolean true" >> freenest-forum.preseed
+echo "freenest-forum  freenest-forum/missing-db-package-error select  abort" >> freenest-forum.preseed
+echo "freenest-forum  freenest-forum/dbconfig-reinstall       boolean false" >> freenest-forum.preseed
+echo "freenest-forum  freenest-forum/remote/host      select" >> freenest-forum.preseed
+echo "freenest-forum  freenest-forum/internal/skip-preseed    boolean false" >> freenest-forum.preseed
+echo "freenest-forum  freenest-forum/dbconfig-upgrade boolean true" >> freenest-forum.preseed
+echo "freenest-forum  freenest-forum/mysql/method     select  unix socket" >> freenest-forum.preseed
+echo "freenest-forum  freenest-forum/remote/newhost   string" >> freenest-forum.preseed
+echo "freenest-forum  freenest-forum/database-type    select  mysql" >> freenest-forum.preseed
+echo "freenest-forum  freenest-forum/db/app-user      string  freenest-forum" >> freenest-forum.preseed
+echo "freenest-forum  freenest-forum/purge    boolean false" >> freenest-forum.preseed
+echo "freenest-forum  freenest-forum/internal/reconfiguring   boolean false" >> freenest-forum.preseed
+echo "freenest-forum  freenest-forum/upgrade-backup   boolean true" >> freenest-forum.preseed
+echo "freenest-forum  freenest-forum/upgrade-error    select  abort" >> freenest-forum.preseed
+echo "freenest-forum  freenest-forum/remove-error     select  abort" >> freenest-forum.preseed
+echo "freenest-forum  freenest-forum/install-error    select  abort" >> freenest-forum.preseed
+
 echo "freenest-teambarometer	freenest-teambarometer/mysql/admin-pass	password $PASSWORD" >> freenest-teambarometer.preseed
 echo "freenest-teambarometer	freenest-teambarometer/password-confirm	password $PASSWORD" >> freenest-teambarometer.preseed
 echo "freenest-teambarometer	freenest-teambarometer/app-password-confirm	password $PASSWORD" >> freenest-teambarometer.preseed
 echo "freenest-teambarometer	freenest-teambarometer/mysql/app-pass	password $PASSWORD" >> freenest-teambarometer.preseed
 echo "freenest-teambarometer	freenest-teambarometer/upgrade-error	select	abort" >> freenest-teambarometer.preseed
 echo "freenest-teambarometer	freenest-teambarometer/purge	boolean	false" >> freenest-teambarometer.preseed
-echo "freenest-teambarometer	freenest-teambarometer/passwords-do-not-match	error" >> freenest-teambarometer.preseed
 echo "freenest-teambarometer	freenest-teambarometer/install-error	select	abort" >> freenest-teambarometer.preseed
 echo "freenest-teambarometer	freenest-teambarometer/internal/reconfiguring	boolean	false" >> freenest-teambarometer.preseed
 echo "freenest-teambarometer	freenest-teambarometer/missing-db-package-error	select	abort" >> freenest-teambarometer.preseed
@@ -399,24 +390,41 @@ echo "freenest-teambarometer	freenest-teambarometer/remote/host	select	" >> free
 echo "freenest-teambarometer	freenest-teambarometer/db/dbname	string	freenestteambarometer" >> freenest-teambarometer.preseed
 echo "freenest-teambarometer	freenest-teambarometer/mysql/admin-user	string	root" >> freenest-teambarometer.preseed
 
-
+echo "Preseeding mysql-server-5.5.preseed..."
 cat mysql-server-5.5.preseed | sudo debconf-set-selections
+echo "Preseeding slapd..."
 cat slapd.preseed | sudo debconf-set-selections
+echo "Preseeding ldap-auth-config..."
 cat ldap-auth-config.preseed | sudo debconf-set-selections
+echo "Preseeding websvn..."
 cat websvn.preseed | sudo debconf-set-selections
+echo "Preseeding libphp-adodb..."
 cat libphp-adodb.preseed | sudo debconf-set-selections
+echo "Preseeding freenest-core..."
 cat freenest-core.preseed | sudo debconf-set-selections
+echo "Preseeding freenest-stikked..."
 cat freenest-stikked.preseed | sudo debconf-set-selections
+echo "Preseeding freenest-teamboard..."
 cat freenest-teamboard.preseed | sudo debconf-set-selections
+echo "Preseeding freenest-glpi..."
 cat freenest-glpi.preseed | sudo debconf-set-selections
+echo "Preseeding freenest-cacti..."
 cat freenest-cacti.preseed | sudo debconf-set-selections
+echo "Preseeding freenest-testlink..."
 cat freenest-testlink.preseed | sudo debconf-set-selections
+echo "Preseeding freenest-teamboard..."
 cat freenest-teamboard.preseed | sudo debconf-set-selections
+echo "Preseeding freenest-changezilla..."
 cat freenest-changezilla.preseed | sudo debconf-set-selections
+echo "Preseeding freenest-bugzilla..."
 cat freenest-bugzilla.preseed | sudo debconf-set-selections
+echo "Preseeding freenest-forum..."
 cat freenest-forum.preseed | sudo debconf-set-selections
+echo "Preseeding freenest-trac..."
 cat freenest-trac.preseed | sudo debconf-set-selections
+echo "Preseeding freenest-controlpanel..."
 cat freenest-controlpanel.preseed | sudo debconf-set-selections
+echo "Preseeding freenest-teambarometer..."
 cat freenest-teambarometer.preseed | sudo debconf-set-selections
 echo "Preseeding done... Install FreeNEST package now."
 
