@@ -114,6 +114,31 @@ echo "freenest-core	freenest-core/domain_name	string	localdomain" >> freenest-co
 echo "freenest-core	freenest-core/remote/port	string" >> freenest-core.preseed
 echo "freenest-core	freenest-core/purge	boolean	false" >> freenest-core.preseed
 
+echo "freenest-gitadmintools	freenest-gitadmintools/app-password-confirm	password" >> freenest-gitadmintools.preseed
+echo "freenest-gitadmintools	freenest-gitadmintools/mysql/app-pass	password" >> freenest-gitadmintools.preseed
+echo "freenest-gitadmintools	freenest-gitadmintools/mysql/admin-pass	password" >> freenest-gitadmintools.preseed
+echo "freenest-gitadmintools	freenest-gitadmintools/password-confirm	password" >> freenest-gitadmintools.preseed
+echo "freenest-gitadmintools	freenest-gitadmintools/internal/reconfiguring	boolean	false" >> freenest-gitadmintools.preseed
+echo "freenest-gitadmintools	freenest-gitadmintools/remote/newhost	string" >> freenest-gitadmintools.preseed
+echo "freenest-gitadmintools	freenest-gitadmintools/remote/host	select" >> freenest-gitadmintools.preseed
+echo "freenest-gitadmintools	freenest-gitadmintools/upgrade-error	select	abort" >> freenest-gitadmintools.preseed
+echo "freenest-gitadmintools	freenest-gitadmintools/dbconfig-remove	boolean" >> freenest-gitadmintools.preseed
+echo "freenest-gitadmintools	freenest-gitadmintools/mysql/method	select	unix socket" >> freenest-gitadmintools.preseed
+echo "freenest-gitadmintools	freenest-gitadmintools/dbconfig-reinstall	boolean	false" >> freenest-gitadmintools.preseed
+echo "freenest-gitadmintools	freenest-gitadmintools/database-type	select	mysql" >> freenest-gitadmintools.preseed
+echo "freenest-gitadmintools	freenest-gitadmintools/remote/port	string" >> freenest-gitadmintools.preseed
+echo "freenest-gitadmintools	freenest-gitadmintools/db/app-user	string	freenest-gitadmi" >> freenest-gitadmintools.preseed
+echo "freenest-gitadmintools	freenest-gitadmintools/dbconfig-upgrade	boolean	true" >> freenest-gitadmintools.preseed
+echo "freenest-gitadmintools	freenest-gitadmintools/missing-db-package-error	select	abort" >> freenest-gitadmintools.preseed
+echo "freenest-gitadmintools	freenest-gitadmintools/purge	boolean	false" >> freenest-gitadmintools.preseed
+echo "freenest-gitadmintools	freenest-gitadmintools/upgrade-backup	boolean	true" >> freenest-gitadmintools.preseed
+echo "freenest-gitadmintools	freenest-gitadmintools/internal/skip-preseed	boolean	false" >> freenest-gitadmintools.preseed
+echo "freenest-gitadmintools	freenest-gitadmintools/mysql/admin-user	string	root" >> freenest-gitadmintools.preseed
+echo "freenest-gitadmintools	freenest-gitadmintools/db/dbname	string	freenestgitadmintools" >> freenest-gitadmintools.preseed
+echo "freenest-gitadmintools	freenest-gitadmintools/install-error	select	abort" >> freenest-gitadmintools.preseed
+echo "freenest-gitadmintools	freenest-gitadmintools/dbconfig-install	boolean	true" >> freenest-gitadmintools.preseed
+echo "freenest-gitadmintools	freenest-gitadmintools/remove-error	select	abort" >> freenest-gitadmintools.preseed
+
 echo "freenest-stikked        freenest-stikked/password-confirm       password $PASSWORD" >> freenest-stikked.preseed
 echo "freenest-stikked        freenest-stikked/app-password-confirm   password $PASSWORD" >> freenest-stikked.preseed
 echo "freenest-stikked        freenest-stikked/mysql/app-pass password $PASSWORD" >> freenest-stikked.preseed
@@ -426,6 +451,8 @@ echo "Preseeding freenest-controlpanel..."
 cat freenest-controlpanel.preseed | sudo debconf-set-selections
 echo "Preseeding freenest-teambarometer..."
 cat freenest-teambarometer.preseed | sudo debconf-set-selections
+echo "Preseeding freenest-gitadmintools..."
+cat freenest-gitadmintools.preseed | sudo debconf-set-selections
 echo "Preseeding done... Install FreeNEST package now."
 
 #DEBHELPER#
