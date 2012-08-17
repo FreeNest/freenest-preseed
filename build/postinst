@@ -2,6 +2,12 @@
 
 set -e
 
+# Converting this to use debconf for prompting the questions has been tried.
+# It worked fine till the the set-selections part in the end where it failed because
+# debconf is locked. That's because debconf is already in use when taking the 
+# variables with prompts and stuff so it's locked when debconf-set-selections
+# would need it. Shit happens.
+
 USERNAME=AdminUser
 HOSTNAME=""
 DOMAIN=""
