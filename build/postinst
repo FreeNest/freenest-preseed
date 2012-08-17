@@ -8,6 +8,18 @@ set -e
 # variables with prompts and stuff so it's locked when debconf-set-selections
 # would need it. Shit happens.
 
+# SECURITY RISK: Remove preseed files after setting them with set-selections because password is viewable
+# there at the moment!!!, i didn't have time to do that when i left...
+
+# About bug 89 (Password setting in preseed configuration in not working?)
+# Reason for that probably is that when password is set for example $pekka$,
+# when it inserts it into preseed sentence it goes like for example:
+# mysql-server-5.5  mysql-server/root_password      password $pekka$
+# It may think it as an variable and that's why it doesnt work.
+
+# I tried to add extra quatation marks automatically every time in front and back
+# of the variable but it didn't help...
+
 USERNAME=AdminUser
 HOSTNAME=""
 DOMAIN=""
