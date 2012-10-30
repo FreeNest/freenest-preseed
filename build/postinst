@@ -351,7 +351,7 @@ echo "freenest-controlpanel   freenest-controlpanel/mysql/admin-pass  password $
 echo "freenest-controlpanel   freenest-controlpanel/app-password-confirm      password $PASSWORD" >> freenest-controlpanel.preseed
 echo "freenest-controlpanel   freenest-controlpanel/missing-db-package-error  select  abort" >> freenest-controlpanel.preseed
 echo "freenest-controlpanel   freenest-controlpanel/upgrade-error     select  abort" >> freenest-controlpanel.preseed
-echo "freenest-controlpanel   freenest-controlpanel/db/app-user       string  freenest-control" >> freenest-controlpanle.preseed
+echo "freenest-controlpanel   freenest-controlpanel/db/app-user       string  freenest-control" >> freenest-controlpanel.preseed
 echo "freenest-controlpanel   freenest-controlpanel/remote/host       select" >> freenest-controlpanel.preseed
 echo "freenest-controlpanel   freenest-controlpanel/internal/skip-preseed     boolean false" >> freenest-controlpanel.preseed
 echo "freenest-controlpanel   freenest-controlpanel/dbconfig-reinstall        boolean false" >> freenest-controlpanel.preseed
@@ -467,6 +467,26 @@ echo "freenest-teambarometer	freenest-teambarometer/remote/host	select	" >> free
 echo "freenest-teambarometer	freenest-teambarometer/db/dbname	string	freenestteambarometer" >> freenest-teambarometer.preseed
 echo "freenest-teambarometer	freenest-teambarometer/mysql/admin-user	string	root" >> freenest-teambarometer.preseed
 
+echo "postfix	postfix/mailname	string	$HOSTNAME" >> postfix.preseed
+echo "postfix	postfix/tlsmgr_upgrade_warning	boolean" >> postfix.preseed
+echo "postfix	postfix/retry_upgrade_warning	boolean" >> postfix.preseed
+echo "postfix	postfix/relayhost	string" >> postfix.preseed
+echo "postfix	postfix/procmail	boolean	false" >> postfix.preseed
+echo "postfix	postfix/bad_recipient_delimiter	error	" >> postfix.preseed
+echo "postfix	postfix/rfc1035_violation	boolean	false" >> postfix.preseed
+echo "postfix	postfix/mynetworks	string	127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128" >> postfix.preseed
+echo "postfix	postfix/sqlite_warning	boolean	" >> postfix.preseed
+echo "postfix	postfix/protocols	select	all" >> postfix.preseed
+echo "postfix	postfix/recipient_delim	string	+" >> postfix.preseed
+echo "postfix	postfix/main_mailer_type	select	Local only" >> postfix.preseed
+echo "postfix	postfix/kernel_version_warning	boolean	" >> postfix.preseed
+echo "postfix	postfix/chattr	boolean	false" >> postfix.preseed
+echo "postfix	postfix/root_address	string	" >> postfix.preseed
+echo "postfix	postfix/mydomain_warning	boolean	" >> postfix.preseed
+echo "postfix	postfix/destinations	string	$HOSTNAME, localhost.localdomain, localhost" >> postfix.preseed
+echo "postfix	postfix/not_configured	error " >> postfix.preseed
+echo "postfix	postfix/mailbox_limit	string	0" >> postfix.preseed
+
 echo "Preseeding mysql-server-5.5.preseed..."
 cat mysql-server-5.5.preseed | sudo debconf-set-selections
 echo "Preseeding slapd..."
@@ -505,6 +525,8 @@ echo "Preseeding freenest-teambarometer..."
 cat freenest-teambarometer.preseed | sudo debconf-set-selections
 echo "Preseeding freenest-gitadmintools..."
 cat freenest-gitadmintools.preseed | sudo debconf-set-selections
+echo "Preseeding postfix..."
+cat postfix.preseed | sudo debconf-set-selections
 echo "Preseeding done... Install FreeNEST package now."
 
 #DEBHELPER#
