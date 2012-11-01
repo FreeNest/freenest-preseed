@@ -27,6 +27,7 @@ PASSWORD=""
 PASSWORDA=""
 PASSWORDB=""
 TEMP=1
+OLD_HOSTNAME=`hostname`
 
 echo "FreeNEST 1.4 pre-seeder package (...to make installation process little bit faster)"
 echo "--- --- --- --- ---"
@@ -102,6 +103,16 @@ do
 
 done
 stty echo
+
+echo "$HOSTNAME" > /etc/hostname
+for file in \
+	/etc/hostname \
+	/etc/hosts
+do
+	[ -f $file ] && sed -i.old -e "s:$OLD_HOSTNAME:$HOSTNAME:g" $file
+done
+
+service hostname start
 
 # Many of these seeds may be useless but they are there anyway because debconf-get-selections got them...
 echo "--- --- --- --- ---"
