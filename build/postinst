@@ -104,15 +104,17 @@ do
 done
 stty echo
 
-echo "$HOSTNAME" > /etc/hostname
-for file in \
-	/etc/hostname \
-	/etc/hosts
-do
-	[ -f $file ] && sed -i.old -e "s:$OLD_HOSTNAME:$HOSTNAME:g" $file
-done
+echo $HOSTNAME > /etc/hostname
+sed -i.old '/127.0.0.1\t/d' /etc/hosts
+echo -e "127.0.0.1\tlocalhost" >> /etc/hosts
+echo -e "127.0.0.1\t$HOSTNAME $HOSTNAME.$DOMAIN" >> /etc/hosts
 
-service hostname start
+sed -i.old '/kernel.domainname\ =/d' /etc/sysctl.conf
+sed -i.old '/kernel.hostname\ =/d' /etc/sysctl.conf
+sysctl -w "kernel.hostname=$HOSTNAME" >> /etc/sysctl.conf
+sysctl -w "kernel.domainname=$DOMAIN" >> /etc/sysctl.conf
+
+service hostname start 
 
 # Many of these seeds may be useless but they are there anyway because debconf-get-selections got them...
 echo "--- --- --- --- ---"
