@@ -175,7 +175,7 @@ echo "freenest-core	freenest-core/mysql/method	select	unix socket" >> freenest-c
 echo "freenest-core	freenest-core/db/app-user	string	freenest-core" >> freenest-core.preseed
 echo "freenest-core	freenest-core/dbconfig-install	boolean	true" >> freenest-core.preseed
 echo "freenest-core	freenest-core/remove-error	select	abort" >> freenest-core.preseed
-echo "freenest-core	freenest-core/domain_name	string	localdomain" >> freenest-core.preseed
+echo "freenest-core	freenest-core/domain_name	string	$DOMAIN" >> freenest-core.preseed
 echo "freenest-core	freenest-core/remote/port	string" >> freenest-core.preseed
 echo "freenest-core	freenest-core/purge	boolean	false" >> freenest-core.preseed
 
@@ -495,7 +495,7 @@ echo "postfix	postfix/kernel_version_warning	boolean	" >> postfix.preseed
 echo "postfix	postfix/chattr	boolean	false" >> postfix.preseed
 echo "postfix	postfix/root_address	string	" >> postfix.preseed
 echo "postfix	postfix/mydomain_warning	boolean	" >> postfix.preseed
-echo "postfix	postfix/destinations	string	$HOSTNAME, localhost.localdomain, localhost" >> postfix.preseed
+echo "postfix	postfix/destinations	string	$HOSTNAME, $HOSTNAME.$DOMAIN, localhost" >> postfix.preseed
 echo "postfix	postfix/mailbox_limit	string	0" >> postfix.preseed
 
 echo "Preseeding mysql-server-5.5.preseed..."
