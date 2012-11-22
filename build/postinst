@@ -480,6 +480,28 @@ echo "freenest-teambarometer	freenest-teambarometer/remote/host	select	" >> free
 echo "freenest-teambarometer	freenest-teambarometer/db/dbname	string	freenestteambarometer" >> freenest-teambarometer.preseed
 echo "freenest-teambarometer	freenest-teambarometer/mysql/admin-user	string	root" >> freenest-teambarometer.preseed
 
+echo "freenest-dashboard	freenest-dashboard/password-confirm	password $PASSWORD" >> freenest-dashboard.preseed
+echo "freenest-dashboard	freenest-dashboard/mysql/admin-pass	password $PASSWORD" >> freenest-dashboard.preseed
+echo "freenest-dashboard	freenest-dashboard/mysql/app-pass	password $PASSWORD" >> freenest-dashboard.preseed
+echo "freenest-dashboard	freenest-dashboard/remote/newhost	string  " >> freenest-dashboard.preseed
+echo "freenest-dashboard	freenest-dashboard/purge	boolean	false " >> freenest-dashboard.preseed
+echo "freenest-dashboard	freenest-dashboard/dbconfig-reinstall	boolean	false " >> freenest-dashboard.preseed
+echo "freenest-dashboard	freenest-dashboard/database-type	select	mysql " >> freenest-dashboard.preseed
+echo "freenest-dashboard	freenest-dashboard/missing-db-package-error	select	abort " >> freenest-dashboard.preseed
+echo "freenest-dashboard	freenest-dashboard/internal/skip-preseed	boolean	false" >> freenest-dashboard.preseed
+echo "freenest-dashboard	freenest-dashboard/remove-error	select	abort" >> freenest-dashboard.preseed
+echo "freenest-dashboard	freenest-dashboard/upgrade-backup	boolean	true" >> freenest-dashboard.preseed
+echo "freenest-dashboard	freenest-dashboard/install-error	select	abort" >> freenest-dashboard.preseed
+echo "freenest-dashboard	freenest-dashboard/db/dbname	string	freenestdashboard" >> freenest-dashboard.preseed
+echo "freenest-dashboard	freenest-dashboard/dbconfig-remove	boolean	" >> freenest-dashboard.preseed
+echo "freenest-dashboard	freenest-dashboard/db/app-user	string	freenest-dashboa" >> freenest-dashboard.preseed
+echo "freenest-dashboard	freenest-dashboard/dbconfig-upgrade	boolean	true" >> freenest-dashboard.preseed
+echo "freenest-dashboard	freenest-dashboard/upgrade-error	select	abort" >> freenest-dashboard.preseed
+echo "freenest-dashboard	freenest-dashboard/mysql/method	select	unix socket" >> freenest-dashboard.preseed
+echo "freenest-dashboard	freenest-dashboard/internal/reconfiguring	boolean	false" >> freenest-dashboard.preseed
+echo "freenest-dashboard	freenest-dashboard/remote/host	select	" >> freenest-dashboard.preseed
+echo "freenest-dashboard	freenest-dashboard/mysql/admin-user	string	root" >> freenest-dashboard.preseed
+
 echo "postfix	postfix/mailname	string	$HOSTNAME" >> postfix.preseed
 echo "postfix	postfix/tlsmgr_upgrade_warning	boolean" >> postfix.preseed
 echo "postfix	postfix/retry_upgrade_warning	boolean" >> postfix.preseed
@@ -536,6 +558,8 @@ echo "Preseeding freenest-teambarometer..."
 cat freenest-teambarometer.preseed | sudo debconf-set-selections
 echo "Preseeding freenest-gitadmintools..."
 cat freenest-gitadmintools.preseed | sudo debconf-set-selections
+echo "Preseeding freenest-dashboard..."
+cat freenest-dashboard.preseed | sudo debconf-set-selections
 echo "Preseeding postfix..."
 cat postfix.preseed | sudo debconf-set-selections
 echo "Preseeding done... Install FreeNEST package now."
