@@ -490,6 +490,7 @@ echo "freenest-dashboard	freenest-dashboard/database-type	select	mysql " >> free
 echo "freenest-dashboard	freenest-dashboard/missing-db-package-error	select	abort " >> freenest-dashboard.preseed
 echo "freenest-dashboard	freenest-dashboard/internal/skip-preseed	boolean	false" >> freenest-dashboard.preseed
 echo "freenest-dashboard	freenest-dashboard/remove-error	select	abort" >> freenest-dashboard.preseed
+echo "freenest-dashboard	freenest-dashboard/dbconfig-install boolean true" >> freenest-dashboard.preseed
 echo "freenest-dashboard	freenest-dashboard/upgrade-backup	boolean	true" >> freenest-dashboard.preseed
 echo "freenest-dashboard	freenest-dashboard/install-error	select	abort" >> freenest-dashboard.preseed
 echo "freenest-dashboard	freenest-dashboard/db/dbname	string	freenestdashboard" >> freenest-dashboard.preseed
