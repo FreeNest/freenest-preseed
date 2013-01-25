@@ -201,7 +201,7 @@ echo "websvn	websvn/permissions	note" >> websvn.preseed
 echo "libphp-adodb	libphp-adodb/pathmove	note" >> libphp-adodb.preseed
 
 echo "freenest-core	freenest-core/ldap_adminuser_passwd	password	$PASSWORD" >> freenest-core.preseed
-echo "freenest-core freenest-core/ldap_rssuser_passwd password $RSSPASSWORD" >> freenest-core.preseed
+echo "freenest-core	freenest-core/freenest_rssuser_passwd	password	$RSSPASSWORD" >> freenest-core.preseed
 echo "freenest-core	freenest-core/mysql/app-pass	password $PASSWORD" >> freenest-core.preseed
 echo "freenest-core	freenest-core/password-confirm	password $PASSWORD" >> freenest-core.preseed
 echo "freenest-core	freenest-core/mysql/admin-pass	password $PASSWORD" >> freenest-core.preseed
