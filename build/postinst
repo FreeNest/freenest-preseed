@@ -26,6 +26,7 @@ DOMAIN=""
 PASSWORD=""
 PASSWORDA=""
 PASSWORDB=""
+RSSPASSWORD=""
 TEMP=1
 OLD_HOSTNAME=`hostname`
 
@@ -104,6 +105,56 @@ do
 done
 stty echo
 
+PASSWORDA=""
+PASSWORDB=""
+TEMP="1"
+
+# RssUser Password
+while [ $TEMP == 1 ]
+do
+
+	if [ -z $RSSPASSWORD ]
+	then
+	stty -echo
+	echo "RssUser password (default: rssuser): " 
+ 	read PASSWORDA
+	stty echo
+		if [ -z $PASSWORDA ]
+	        then
+	                echo "Default value set!"
+	                RSSPASSWORD=rssuser
+	        	TEMP=0
+	        fi
+
+		if [ "$TEMP" == 1 ]
+		then
+			stty -echo
+			echo "Type RssUser password again: "
+			read PASSWORDB
+			stty echo
+		fi
+	fi
+
+	if [ "$PASSWORDA" == "$PASSWORDB" ]
+	then
+		if [ "$PASSWORDA" != "" ]
+		then
+			RSSPASSWORD=$PASSWORDA
+			TEMP=0
+		fi
+	else
+		if [ "$TEMP" == 1 ]
+		then
+			echo "Passwords didn't match!"
+			RSSPASSWORD=""
+			PASSWORDA=""
+			PASSWORDB=""
+		fi
+	fi
+
+done
+stty echo
+
 echo $HOSTNAME > /etc/hostname
 sed -i.old '/127.0.0.1\t/d' /etc/hosts
 echo -e "127.0.0.1\tlocalhost" >> /etc/hosts
@@ -150,6 +201,7 @@ echo "websvn	websvn/permissions	note" >> websvn.preseed
 echo "libphp-adodb	libphp-adodb/pathmove	note" >> libphp-adodb.preseed
 
 echo "freenest-core	freenest-core/ldap_adminuser_passwd	password	$PASSWORD" >> freenest-core.preseed
+echo "freenest-core freenest-core/ldap_rssuser_passwd password $RSSPASSWORD" >> freenest-core.preseed
 echo "freenest-core	freenest-core/mysql/app-pass	password $PASSWORD" >> freenest-core.preseed
 echo "freenest-core	freenest-core/password-confirm	password $PASSWORD" >> freenest-core.preseed
 echo "freenest-core	freenest-core/mysql/admin-pass	password $PASSWORD" >> freenest-core.preseed
