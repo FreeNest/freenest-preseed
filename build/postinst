@@ -281,9 +281,9 @@ echo "freenest-stikked        freenest-stikked/dbconfig-upgrade       boolean tr
 echo "freenest-stikked        freenest-stikked/database-type  select  mysql" >> freenest-stikked.preseed
 echo "freenest-stikked        freenest-stikked/mysql/method   select  unix socket" >> freenest-stikked.preseed
 
-echo "freenest-teamboard      freenestteamboard/mysql/app-pass        password $PASSWORD" >> freenest-teamboard.preseed
-echo "freenest-teamboard      freenestteamboard/app-password-confirm  password $PASSWORD" >> freenest-teamboard.preseed
-echo "freenest-teamboard      freenestteamboard/mysql/admin-pass      password $PASSWORD" >> freenest-teamboard.preseed
+echo "freenest-teamboard      freenest-teamboard/mysql/app-pass        password $PASSWORD" >> freenest-teamboard.preseed
+echo "freenest-teamboard      freenest-teamboard/app-password-confirm  password $PASSWORD" >> freenest-teamboard.preseed
+echo "freenest-teamboard      freenest-teamboard/mysql/admin-pass      password $PASSWORD" >> freenest-teamboard.preseed
 
 echo "freenest-glpi   freenest-glpi/mysql/app-pass    password $PASSWORD" >> freenest-glpi.preseed
 echo "freenest-glpi   freenest-glpi/app-password-confirm      password $PASSWORD" >> freenest-glpi.preseed
@@ -460,27 +460,27 @@ echo "freenest-trac   freenest-trac/upgrade-error     select  abort" >> freenest
 echo "freenest-trac   freenest-trac/db/app-user       string  freenest-trac" >> freenest-trac.preseed
 echo "freenest-trac   freenest-trac/install-error     select  abort" >> freenest-trac.preseed
 
-echo "freenest-teamboard      freenestteamboard/password-confirm      password $PASSWORD" >> freenest-teamboard.preseed
-echo "freenest-teamboard      freenestteamboard/remote/host   select" >> freenest-teamboard.preseed
-echo "freenest-teamboard      freenestteamboard/mysql/admin-user      string  root" >> freenest-teamboard.preseed
-echo "freenest-teamboard      freenestteamboard/upgrade-error select  abort" >> freenest-teamboard.preseed
-echo "freenest-teamboard      freenestteamboard/db/app-user   string  freenestteamboar" >> freenest-teamboard.preseed
-echo "freenest-teamboard      freenestteamboard/remote/newhost        string" >> freenest-teamboard.preseed
-echo "freenest-teamboard      freenestteamboard/install-error select  abort" >> freenest-teamboard.preseed
-echo "freenest-teamboard      freenestteamboard/purge boolean false" >> freenest-teamboard.preseed
-echo "freenest-teamboard      freenestteamboard/dbconfig-install      boolean true" >> freenest-teamboard.preseed
-echo "freenest-teamboard      freenestteamboard/dbconfig-upgrade      boolean true" >> freenest-teamboard.preseed
-echo "freenest-teamboard      freenestteamboard/db/dbname     string  freenestteamboard" >> freenest-teamboard.preseed
-echo "freenest-teamboard      freenestteamboard/remove-error  select  abort" >> freenest-teamboard.preseed
-echo "freenest-teamboard      freenestteamboard/remote/port   string" >> freenest-teamboard.preseed
-echo "freenest-teamboard      freenestteamboard/upgrade-backup        boolean true" >> freenest-teamboard.preseed
-echo "freenest-teamboard      freenestteamboard/dbconfig-remove       boolean" >> freenest-teamboard.preseed
-echo "freenest-teamboard      freenestteamboard/database-type select  mysql" >> freenest-teamboard.preseed
-echo "freenest-teamboard      freenestteamboard/dbconfig-reinstall    boolean false" >> freenest-teamboard.preseed
-echo "freenest-teamboard      freenestteamboard/missing-db-package-error      select  abort" >> freenest-teamboard.preseed
-echo "freenest-teamboard      freenestteamboard/mysql/method  select  unix socket" >> freenest-teamboard.preseed
-echo "freenest-teamboard      freenestteamboard/internal/reconfiguring        boolean false" >> freenest-teamboard.preseed
-echo "freenest-teamboard      freenestteamboard/internal/skip-preseed boolean false" >> freenest-teamboard.preseed
+echo "freenest-teamboard      freenest-teamboard/password-confirm      password $PASSWORD" >> freenest-teamboard.preseed
+echo "freenest-teamboard      freenest-teamboard/remote/host   select" >> freenest-teamboard.preseed
+echo "freenest-teamboard      freenest-teamboard/mysql/admin-user      string  root" >> freenest-teamboard.preseed
+echo "freenest-teamboard      freenest-teamboard/upgrade-error select  abort" >> freenest-teamboard.preseed
+echo "freenest-teamboard      freenest-teamboard/db/app-user   string  freenestteamboar" >> freenest-teamboard.preseed
+echo "freenest-teamboard      freenest-teamboard/remote/newhost        string" >> freenest-teamboard.preseed
+echo "freenest-teamboard      freenest-teamboard/install-error select  abort" >> freenest-teamboard.preseed
+echo "freenest-teamboard      freenest-teamboard/purge boolean false" >> freenest-teamboard.preseed
+echo "freenest-teamboard      freenest-teamboard/dbconfig-install      boolean true" >> freenest-teamboard.preseed
+echo "freenest-teamboard      freenest-teamboard/dbconfig-upgrade      boolean true" >> freenest-teamboard.preseed
+echo "freenest-teamboard      freenest-teamboard/db/dbname     string  freenest-teamboard" >> freenest-teamboard.preseed
+echo "freenest-teamboard      freenest-teamboard/remove-error  select  abort" >> freenest-teamboard.preseed
+echo "freenest-teamboard      freenest-teamboard/remote/port   string" >> freenest-teamboard.preseed
+echo "freenest-teamboard      freenest-teamboard/upgrade-backup        boolean true" >> freenest-teamboard.preseed
+echo "freenest-teamboard      freenest-teamboard/dbconfig-remove       boolean" >> freenest-teamboard.preseed
+echo "freenest-teamboard      freenest-teamboard/database-type select  mysql" >> freenest-teamboard.preseed
+echo "freenest-teamboard      freenest-teamboard/dbconfig-reinstall    boolean false" >> freenest-teamboard.preseed
+echo "freenest-teamboard      freenest-teamboard/missing-db-package-error      select  abort" >> freenest-teamboard.preseed
+echo "freenest-teamboard      freenest-teamboard/mysql/method  select  unix socket" >> freenest-teamboard.preseed
+echo "freenest-teamboard      freenest-teamboard/internal/reconfiguring        boolean false" >> freenest-teamboard.preseed
+echo "freenest-teamboard      freenest-teamboard/internal/skip-preseed boolean false" >> freenest-teamboard.preseed
 
 echo "freenest-forum  freenest-forum/mysql/admin-pass password $PASSWORD" >> freenest-forum.preseed
 echo "freenest-forum  freenest-forum/app-password-confirm     password $PASSWORD" >> freenest-forum.preseed
