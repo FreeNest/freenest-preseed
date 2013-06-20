@@ -29,8 +29,8 @@ PASSWORDB=""
 RSSPASSWORD=""
 TEMP=1
 OLD_HOSTNAME=`hostname`
-CONFDIR="/usr/share/freenest-core"
-PATHTODBCONF="$CONFDIR/confs/db-conf"
+CONFDIR="/usr/share/freenest-core/confs"
+PATHTODBCONF="$CONFDIR/db-conf"
 
 echo "FreeNEST 1.4 pre-seeder package (...to make installation process little bit faster)"
 echo "--- --- --- --- ---"
@@ -176,7 +176,6 @@ echo "saving conf file..."
 if [ ! -d  $CONFDIR ]; then
 	echo "Creating confdir"
 	mkdir $CONFDIR
-	mkdir "$CONFDIR/confs"
 	echo "Confdir created"
 fi
 
