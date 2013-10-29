@@ -635,7 +635,9 @@ echo "Preseeding freenest-dashboard..."
 cat freenest-dashboard.preseed | sudo debconf-set-selections
 echo "Preseeding postfix..."
 cat postfix.preseed | sudo debconf-set-selections
-echo "Preseeding done... You can now install FreeNest Product Platform 1.4  packages now."
+echo "Preseeding done... You can now install FreeNest Product Platform 1.4  packages."
+echo "eg. sudo apt-get install freenest"
+
 
 #DEBHELPER#
 
